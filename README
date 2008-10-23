@@ -1,0 +1,11 @@
+Twitter Vote Report
+https://votereport.pbwiki.com
+
+This application couples with the Twitter Vote Report backend infrastructure to allow for polling place
+reports to be submitted using an iPhone native interface.
+
+See http://github.com/davetroy/votereport/tree/master for backend project.
+
+--
+LICENSE
+All code (C) 2008 David Troy, dave@roundhousetech.com except where otherwise noted. Made available under the MIT License.

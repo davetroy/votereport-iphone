@@ -277,7 +277,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {186, 639}}</string>
+							<string>{{0, 0}, {186, 807}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -289,14 +289,14 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {203, 657}}</string>
+						<string>{{0, 0}, {203, 825}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>566 326 677 698 0 0 1920 1178 </string>
+						<string>566 158 1048 866 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -331,14 +331,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {469, 479}}</string>
+								<string>{{0, 0}, {840, 558}}</string>
 								<key>RubberWindowFrame</key>
-								<string>566 326 677 698 0 0 1920 1178 </string>
+								<string>566 158 1048 866 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>479pt</string>
+							<string>558pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -351,18 +351,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 484}, {469, 173}}</string>
+								<string>{{0, 563}, {840, 262}}</string>
 								<key>RubberWindowFrame</key>
-								<string>566 326 677 698 0 0 1920 1178 </string>
+								<string>566 158 1048 866 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>173pt</string>
+							<string>262pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>469pt</string>
+					<string>840pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -516,7 +516,7 @@
 		<string>/Users/davetroy/Development/iPhone/Vote Report/Vote Report.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>566 326 677 698 0 0 1920 1178 </string>
+	<string>566 158 1048 866 0 0 1920 1178 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
