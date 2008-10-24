@@ -1,6 +1,5 @@
 //
 //  HTTPManager.m
-//  Heydar
 //
 //  Created by David Troy on 5/31/08.
 //  Copyright 2008 Popvox, LLC. All rights reserved.
@@ -70,7 +69,7 @@
 	if ([method isEqual:@"PUT"])
 		[theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 
-	debug_printf("http async: %s [%s]\n", [url UTF8String], [method UTF8String]);
+	printf("http async: %s [%s]\n", [url UTF8String], [method UTF8String]);
 	myConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self startImmediately:YES];
 	if (myConnection)
 		self.receivedData = [NSMutableData data];  // Note: retain is implied
@@ -79,7 +78,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     // do something with the data
-    debug_printf("Succeeded! Received %d bytes of data\n",[receivedData length]);
+    printf("Succeeded! Received %d bytes of data\n",[receivedData length]);
 	successful = YES;
 	
     // release the connection
@@ -118,7 +117,7 @@
 
 // We received an authentication challenge
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	debug_printf("whoa! I've been challenged! (%d)\n", [challenge previousFailureCount]);
+	printf("whoa! I've been challenged! (%d)\n", [challenge previousFailureCount]);
 	if (self.credentials && [challenge previousFailureCount]<1) {
 		[connection performSelector:@selector(useCredential:forAuthenticationChallenge:) withObject:self.credentials withObject:challenge];
 	} else {
@@ -141,8 +140,8 @@
 
 	if (errorStr) {
 		/*
-		debug_printf("property list error: %s\n-------\n", [errorStr UTF8String]);
-		debug_printf("%s\n-------\n", [[[[NSString alloc]
+		printf("property list error: %s\n-------\n", [errorStr UTF8String]);
+		printf("%s\n-------\n", [[[[NSString alloc]
 								  initWithData:receivedData   
 								  encoding:NSUTF8StringEncoding] autorelease] UTF8String]);
 		 */

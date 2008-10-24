@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		058FD7C80EB11971000E2324 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 058FD7C70EB11971000E2324 /* README */; };
 		058FD7DC0EB21C16000E2324 /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 058FD7DB0EB21C16000E2324 /* HTTPManager.m */; };
+		058FD7F00EB2643B000E2324 /* Reporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 058FD7EF0EB2643B000E2324 /* Reporter.m */; };
+		058FD8300EB28C47000E2324 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058FD82F0EB28C47000E2324 /* CoreLocation.framework */; };
 		1D3623260D0F684500981E51 /* Vote_ReportAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* Vote_ReportAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -23,6 +25,9 @@
 		058FD7C70EB11971000E2324 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		058FD7DA0EB21C16000E2324 /* HTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPManager.h; sourceTree = "<group>"; };
 		058FD7DB0EB21C16000E2324 /* HTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPManager.m; sourceTree = "<group>"; };
+		058FD7EE0EB2643B000E2324 /* Reporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reporter.h; sourceTree = "<group>"; };
+		058FD7EF0EB2643B000E2324 /* Reporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reporter.m; sourceTree = "<group>"; };
+		058FD82F0EB28C47000E2324 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* Vote_ReportAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vote_ReportAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* Vote_ReportAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vote_ReportAppDelegate.m; sourceTree = "<group>"; };
@@ -46,6 +51,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				058FD8300EB28C47000E2324 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +67,8 @@
 				1D3623250D0F684500981E51 /* Vote_ReportAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* Vote_ReportViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* Vote_ReportViewController.m */,
+				058FD7EE0EB2643B000E2324 /* Reporter.h */,
+				058FD7EF0EB2643B000E2324 /* Reporter.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -108,6 +116,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				058FD82F0EB28C47000E2324 /* CoreLocation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -174,6 +183,7 @@
 				1D3623260D0F684500981E51 /* Vote_ReportAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* Vote_ReportViewController.m in Sources */,
 				058FD7DC0EB21C16000E2324 /* HTTPManager.m in Sources */,
+				058FD7F00EB2643B000E2324 /* Reporter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
