@@ -14,7 +14,6 @@
 	id target;
 	SEL targetSelector;
 	id userData;
-	NSURLCredential *credentials;
 	NSURLConnection *myConnection;
 }
 
@@ -23,7 +22,6 @@
 				 withParameters:(NSDictionary *)parameters;
 -(id)getPropertyList;
 -(NSString*)getResponseText;
--(void)setCredentialsToUsername:(NSString *)username withPassword:(NSString *)password;
 
 @property (nonatomic, retain) NSURLCache *cache;
 @property (nonatomic, retain) NSData *receivedData;
@@ -32,5 +30,4 @@
 @property (nonatomic, readonly) BOOL successful;
 @property (nonatomic) int timeout;
 @property (nonatomic) SEL targetSelector;
-@property (nonatomic, retain) NSURLCredential *credentials;
 @end

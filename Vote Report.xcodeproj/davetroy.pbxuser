@@ -44,16 +44,16 @@
 	};
 	058FD7DA0EB21C16000E2324 /* HTTPManager.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {865, 783}}";
-			sepNavSelRange = "{996, 0}";
-			sepNavVisRange = "{0, 996}";
+			sepNavIntBoundsRect = "{{0, 0}, {865, 760}}";
+			sepNavSelRange = "{500, 0}";
+			sepNavVisRange = "{0, 817}";
 		};
 	};
 	058FD7DB0EB21C16000E2324 /* HTTPManager.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {865, 2394}}";
-			sepNavSelRange = "{2185, 0}";
-			sepNavVisRange = "{3375, 1859}";
+			sepNavIntBoundsRect = "{{0, 0}, {865, 1764}}";
+			sepNavSelRange = "{504, 0}";
+			sepNavVisRange = "{0, 1610}";
 		};
 	};
 	058FD7DD0EB21C87000E2324 /* PBXTextBookmark */ = {
@@ -71,7 +71,7 @@
 		fRef = 058FD7DA0EB21C16000E2324 /* HTTPManager.h */;
 		name = "HTTPManager.h: 37";
 		rLen = 0;
-		rLoc = 996;
+		rLoc = 817;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 0;
@@ -101,7 +101,7 @@
 		fRef = 058FD7DA0EB21C16000E2324 /* HTTPManager.h */;
 		name = "HTTPManager.h: 37";
 		rLen = 0;
-		rLoc = 996;
+		rLoc = 817;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 0;
@@ -141,7 +141,7 @@
 		fRef = 058FD7DA0EB21C16000E2324 /* HTTPManager.h */;
 		name = "HTTPManager.h: 37";
 		rLen = 0;
-		rLoc = 996;
+		rLoc = 817;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 0;
@@ -161,7 +161,7 @@
 		fRef = 058FD7DA0EB21C16000E2324 /* HTTPManager.h */;
 		name = "HTTPManager.h: 37";
 		rLen = 0;
-		rLoc = 996;
+		rLoc = 817;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 0;
@@ -177,7 +177,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {990, 1078}}";
 			sepNavSelRange = "{184, 0}";
-			sepNavVisRange = "{0, 1212}";
+			sepNavVisRange = "{0, 1017}";
 		};
 	};
 	058FD7F50EB28ADD000E2324 /* PBXTextBookmark */ = {
@@ -203,7 +203,7 @@
 		fRef = 058FD7DA0EB21C16000E2324 /* HTTPManager.h */;
 		name = "HTTPManager.h: 37";
 		rLen = 0;
-		rLoc = 996;
+		rLoc = 817;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 0;
@@ -263,7 +263,7 @@
 		fRef = 058FD7DA0EB21C16000E2324 /* HTTPManager.h */;
 		name = "HTTPManager.h: 37";
 		rLen = 0;
-		rLoc = 996;
+		rLoc = 817;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 0;
@@ -483,7 +483,7 @@
 		fRef = 058FD7DB0EB21C16000E2324 /* HTTPManager.m */;
 		name = "HTTPManager.m: 72";
 		rLen = 0;
-		rLoc = 2185;
+		rLoc = 1848;
 		rType = 0;
 		vrLen = 1780;
 		vrLoc = 3454;
@@ -493,7 +493,7 @@
 		fRef = 058FD7DA0EB21C16000E2324 /* HTTPManager.h */;
 		name = "HTTPManager.h: 37";
 		rLen = 0;
-		rLoc = 996;
+		rLoc = 817;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 0;
@@ -583,7 +583,7 @@
 		fRef = 058FD7DB0EB21C16000E2324 /* HTTPManager.m */;
 		name = "HTTPManager.m: 72";
 		rLen = 0;
-		rLoc = 2185;
+		rLoc = 1848;
 		rType = 0;
 		vrLen = 1780;
 		vrLoc = 3454;
@@ -593,7 +593,7 @@
 		fRef = 058FD7DA0EB21C16000E2324 /* HTTPManager.h */;
 		name = "HTTPManager.h: 37";
 		rLen = 0;
-		rLoc = 996;
+		rLoc = 817;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 0;
@@ -696,6 +696,86 @@
 		rLoc = 322;
 		rType = 0;
 		vrLen = 479;
+		vrLoc = 0;
+	};
+	058FD84D0EB28E9D000E2324 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 058FD7EE0EB2643B000E2324 /* Reporter.h */;
+		name = "Reporter.h: 14";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 479;
+		vrLoc = 0;
+	};
+	058FD84E0EB28E9D000E2324 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 058FD7DB0EB21C16000E2324 /* HTTPManager.m */;
+		name = "HTTPManager.m: 31";
+		rLen = 0;
+		rLoc = 504;
+		rType = 0;
+		vrLen = 1610;
+		vrLoc = 0;
+	};
+	058FD84F0EB28E9D000E2324 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 058FD7DA0EB21C16000E2324 /* HTTPManager.h */;
+		name = "HTTPManager.h: 37";
+		rLen = 0;
+		rLoc = 817;
+		rType = 0;
+		vrLen = 996;
+		vrLoc = 0;
+	};
+	058FD8500EB28E9D000E2324 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 058FD7EE0EB2643B000E2324 /* Reporter.h */;
+		name = "Reporter.h: 14";
+		rLen = 0;
+		rLoc = 322;
+		rType = 0;
+		vrLen = 479;
+		vrLoc = 0;
+	};
+	058FD8510EB28E9D000E2324 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 058FD7DB0EB21C16000E2324 /* HTTPManager.m */;
+		name = "HTTPManager.m: 31";
+		rLen = 0;
+		rLoc = 504;
+		rType = 0;
+		vrLen = 1610;
+		vrLoc = 0;
+	};
+	058FD8520EB28E9D000E2324 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 058FD7DA0EB21C16000E2324 /* HTTPManager.h */;
+		name = "HTTPManager.h: 25";
+		rLen = 0;
+		rLoc = 500;
+		rType = 0;
+		vrLen = 817;
+		vrLoc = 0;
+	};
+	058FD8530EB28EA4000E2324 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 058FD7EF0EB2643B000E2324 /* Reporter.m */;
+		name = "Reporter.m: 11";
+		rLen = 0;
+		rLoc = 184;
+		rType = 0;
+		vrLen = 1017;
+		vrLoc = 0;
+	};
+	058FD8540EB28EA5000E2324 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 058FD7DA0EB21C16000E2324 /* HTTPManager.h */;
+		name = "HTTPManager.h: 25";
+		rLen = 0;
+		rLoc = 500;
+		rType = 0;
+		vrLen = 817;
 		vrLoc = 0;
 	};
 	1D3623240D0F684500981E51 /* Vote_ReportAppDelegate.h */ = {
@@ -834,6 +914,14 @@
 			058FD8420EB28CA3000E2324 /* PBXTextBookmark */ = 058FD8420EB28CA3000E2324 /* PBXTextBookmark */;
 			058FD8430EB28CA3000E2324 /* PBXTextBookmark */ = 058FD8430EB28CA3000E2324 /* PBXTextBookmark */;
 			058FD8440EB28CA3000E2324 /* PBXTextBookmark */ = 058FD8440EB28CA3000E2324 /* PBXTextBookmark */;
+			058FD84D0EB28E9D000E2324 /* PBXTextBookmark */ = 058FD84D0EB28E9D000E2324 /* PBXTextBookmark */;
+			058FD84E0EB28E9D000E2324 /* PBXTextBookmark */ = 058FD84E0EB28E9D000E2324 /* PBXTextBookmark */;
+			058FD84F0EB28E9D000E2324 /* PBXTextBookmark */ = 058FD84F0EB28E9D000E2324 /* PBXTextBookmark */;
+			058FD8500EB28E9D000E2324 /* PBXTextBookmark */ = 058FD8500EB28E9D000E2324 /* PBXTextBookmark */;
+			058FD8510EB28E9D000E2324 /* PBXTextBookmark */ = 058FD8510EB28E9D000E2324 /* PBXTextBookmark */;
+			058FD8520EB28E9D000E2324 /* PBXTextBookmark */ = 058FD8520EB28E9D000E2324 /* PBXTextBookmark */;
+			058FD8530EB28EA4000E2324 /* PBXTextBookmark */ = 058FD8530EB28EA4000E2324 /* PBXTextBookmark */;
+			058FD8540EB28EA5000E2324 /* PBXTextBookmark */ = 058FD8540EB28EA5000E2324 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 058FD7BF0EB11880000E2324 /* Source Control */;
 		userBuildSettings = {

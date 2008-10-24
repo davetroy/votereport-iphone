@@ -16,7 +16,6 @@
 @synthesize target;
 @synthesize targetSelector;
 @synthesize userData;
-@synthesize credentials;
 
 - (id)init
 {
@@ -27,12 +26,6 @@
 		cache = [NSURLCache sharedURLCache];
 	}
 	return self;
-}
-
-// Set HTTP Request credentials to this username and password
--(void)setCredentialsToUsername:(NSString *)username withPassword:(NSString *)password {
-	if (username && password)
-		self.credentials = [[NSURLCredential alloc] initWithUser:username password:password persistence:NSURLCredentialPersistenceNone];
 }
 
 - (void)performRequestWithMethod:(NSString *)method
@@ -115,42 +108,6 @@
     [receivedData appendData:data];
 }
 
-// We received an authentication challenge
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	printf("whoa! I've been challenged! (%d)\n", [challenge previousFailureCount]);
-	if (self.credentials && [challenge previousFailureCount]<1) {
-		[connection performSelector:@selector(useCredential:forAuthenticationChallenge:) withObject:self.credentials withObject:challenge];
-	} else {
-		[self connection:connection didFailWithError:nil];
-	}
-}
-
-// This and getResponseText are the only valid ways to retrieve the data
--(id)getPropertyList  
-{  
-    NSString* errorStr = nil;  
-    NSPropertyListFormat format;  
-	
-	//TODO: this may or may not should be mutable... hmm...
-    NSObject *propertyList = [NSPropertyListSerialization   
-                    propertyListFromData:receivedData  
-                    mutabilityOption: kCFPropertyListMutableContainersAndLeaves
-                    format: &format  
-                    errorDescription: &errorStr];
-
-	if (errorStr) {
-		/*
-		printf("property list error: %s\n-------\n", [errorStr UTF8String]);
-		printf("%s\n-------\n", [[[[NSString alloc]
-								  initWithData:receivedData   
-								  encoding:NSUTF8StringEncoding] autorelease] UTF8String]);
-		 */
-		[errorStr release];  // this is an exception, per the docs for NSPropertyListSerialization
-		return nil;
-	}
-
-    return propertyList;  
-} 
 
 -(NSString*)getResponseText {  
     NSString *responseText = [[[NSString alloc]
