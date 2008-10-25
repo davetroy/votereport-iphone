@@ -53,6 +53,7 @@
 		} else {				
 			NSData* body = [params dataUsingEncoding:NSUTF8StringEncoding];
 			[theRequest setHTTPBody:body];
+			printf("params: %s\n", [body bytes]);
 		}
 	}
 	

@@ -64,13 +64,36 @@
 	[httpRequest performRequestWithMethod:@"GET" toUrl:TWITTERVISION_LOCATION_LOOKUP_URL withParameters:params];
 }
 
+// Store the name of the location when we get it back
 -(void)storeLocationName:(HTTPManager *)manager
 {
 	if ([manager successful]) {
 		self.locationName = [manager getResponseText];  //implied retain
 		printf("location: %s\n", [locationName UTF8String]);
+		
+		NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
+		printf("submitting report\n");
+		HTTPManager *httpRequest = [[HTTPManager alloc] init];
+		httpRequest.target = self;
+		httpRequest.targetSelector = @selector(reportComplete:);
+		NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+								@"60", @"report[wait_time]",
+								@"Arnold Elementary", @"polling_place[name]",
+								udid, @"reporter[udid]",
+								locationName, @"reporter[profile_location]",
+								[NSString stringWithFormat:@"%.3f,%.3f", location.coordinate.latitude, location.coordinate.longitude], @"location[latlon]",
+								nil];
+		[httpRequest performRequestWithMethod:@"POST" toUrl:VOTEREPORT_REPORTS_URL withParameters:params];
 	}
 	[manager release];
+}
+
+-(void)reportComplete:(HTTPManager *)manager
+{
+	if ([manager successful])
+		printf("report completed successfully\n");
+	else
+		printf("report failed!\n");
 }
 
 @end

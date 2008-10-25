@@ -20,7 +20,6 @@
 -(void)performRequestWithMethod:(NSString *)method
 						  toUrl:(NSString *)url
 				 withParameters:(NSDictionary *)parameters;
--(id)getPropertyList;
 -(NSString*)getResponseText;
 
 @property (nonatomic, retain) NSURLCache *cache;
