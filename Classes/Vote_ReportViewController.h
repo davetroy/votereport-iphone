@@ -7,10 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reporter.h"
 
-@interface Vote_ReportViewController : UIViewController {
-
+@interface Vote_ReportViewController : UIViewController <UITextFieldDelegate> {
+	IBOutlet UITextField *textField;
+	IBOutlet UIActivityIndicatorView *spinner;
+	IBOutlet UILabel *locationName;
+	IBOutlet UIButton *button;
+	IBOutlet UIButton *infoButton;
+	Reporter *reporter;
 }
+
+//- (IBAction)setConditions:(id)sender;
 
 @end
 

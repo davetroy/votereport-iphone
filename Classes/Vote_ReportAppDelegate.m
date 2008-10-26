@@ -8,7 +8,7 @@
 
 #import "Vote_ReportAppDelegate.h"
 #import "Vote_ReportViewController.h"
-#import "Reporter.h"
+
 
 @implementation Vote_ReportAppDelegate
 
@@ -21,7 +21,6 @@
     // Override point for customization after app launch    
     [window addSubview:viewController.view];
     [window makeKeyAndVisible];
-	Reporter *reporter = [[Reporter alloc] init];
 }
 
 

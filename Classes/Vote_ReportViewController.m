@@ -10,32 +10,58 @@
 
 @implementation Vote_ReportViewController
 
-
-
-/*
-// Override initWithNibName:bundle: to load the view using a nib file then perform additional customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+	printf("did begin editing textfield\n");
 }
-*/
 
-/*
-// Implement loadView to create a view hierarchy programmatically.
-- (void)loadView {
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+	printf("should end\n");
+	return YES;
 }
-*/
 
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+	printf("should return\n");
+	[theTextField resignFirstResponder];
+	return YES;
+}
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
+	printf("view did load\n");
+	reporter = [[Reporter alloc] init];
 
+	// Set up view
+	[spinner startAnimating];
+	[reporter addObserver:self forKeyPath:@"locationName" options:NSKeyValueObservingOptionNew context:NULL];
+	UIImage *buttonBackground = [UIImage imageNamed:@"whiteButton.png"];
+	UIImage *newImage = [buttonBackground stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+	[button setBackgroundImage:newImage forState:UIControlStateNormal];
+
+	buttonBackground = [UIImage imageNamed:@"blueButton.png"];
+	newImage = [buttonBackground stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+	[button setBackgroundImage:newImage forState:UIControlStateSelected];
+	button.hidden = YES;
+	
+	textField.font = [UIFont fontWithName:@"Helvetica" size:15.0];
+	textField.returnKeyType = UIReturnKeyDone;
+	textField.autocorrectionType = UITextAutocorrectionTypeNo;
+	textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+	textField.delegate = self;
+}
+
+// We must be getting notified of a location name update - it's all we Observe for
+- (void)observeValueForKeyPath:(NSString *)keyPath
+					  ofObject:(id)myUser
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+	
+	printf("observed locationName update\n");
+	if (reporter.locationName) {
+		[spinner stopAnimating];
+		locationName.text = reporter.locationName;
+		locationName.hidden = NO;
+		button.hidden = NO;
+	}
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations

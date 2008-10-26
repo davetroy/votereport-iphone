@@ -5,6 +5,7 @@
 #define TWITTERVISION_LOCATION_LOOKUP_URL	@"http://twittervision.com/locations/lookup"
 // #define VOTEREPORT_REPORTS_URL				@"http://votereport.us/reports"
 #define VOTEREPORT_REPORTS_URL	@"http://realtypub.dyndns.org:3000/reports.iphone"
+#define VOTEREPORT_COLOR		[UIColor colorWithRed:101.0 green:20.0 blue:128.0 alpha:255.0];
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>

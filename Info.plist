@@ -1,10 +1,10 @@
 {
-	CFBundleDevelopmentRegion = en;
+	"CFBundleDevelopmentRegion" = en;
 	CFBundleDisplayName = "${PRODUCT_NAME}";
 	CFBundleExecutable = "${EXECUTABLE_NAME}";
-	CFBundleIconFile = "";
-	CFBundleIdentifier = "com.yourcompany.${PRODUCT_NAME:identifier}";
-	CFBundleInfoDictionaryVersion = "6.0";
+	CFBundleIconFile = "icon.png";
+	CFBundleIdentifier = "com.popvox.${PRODUCT_NAME:identifier}";
+	"CFBundleInfoDictionaryVersion" = "6.0";
 	CFBundleName = "${PRODUCT_NAME}";
 	CFBundlePackageType = APPL;
 	CFBundleSignature = "????";
