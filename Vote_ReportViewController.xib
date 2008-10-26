@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="8"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -31,7 +32,7 @@
 				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
 			</object>
 			<object class="IBUIView" id="259121778">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -47,6 +48,20 @@
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">background.png</string>
+						</object>
+					</object>
+					<object class="IBUIImageView" id="152317090">
+						<reference key="NSNextResponder" ref="259121778"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{20, 236}, {280, 187}}</string>
+						<reference key="NSSuperview" ref="259121778"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUIContentMode">4</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">splash.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="24077678">
@@ -94,7 +109,7 @@
 					</object>
 					<object class="IBUIButton" id="75874523">
 						<reference key="NSNextResponder" ref="259121778"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{32, 290}, {256, 37}}</string>
 						<reference key="NSSuperview" ref="259121778"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -130,7 +145,7 @@
 					</object>
 					<object class="IBUIButton" id="89677102">
 						<reference key="NSNextResponder" ref="259121778"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{271, 412}, {18, 19}}</string>
 						<reference key="NSSuperview" ref="259121778"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -148,6 +163,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC4zNzg3MDQyOCAwLjU1MjgxMDM3IDAuNzUwMDExNDQAA</bytes>
@@ -199,6 +215,14 @@
 					</object>
 					<int key="connectionID">27</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">splash</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="152317090"/>
+					</object>
+					<int key="connectionID">29</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -233,6 +257,7 @@
 							<reference ref="735392093"/>
 							<reference ref="89677102"/>
 							<reference ref="75874523"/>
+							<reference ref="152317090"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -266,6 +291,11 @@
 						<reference key="object" ref="89677102"/>
 						<reference key="parent" ref="259121778"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">28</int>
+						<reference key="object" ref="152317090"/>
+						<reference key="parent" ref="259121778"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -280,6 +310,7 @@
 					<string>21.IBPluginDependency</string>
 					<string>24.IBPluginDependency</string>
 					<string>25.IBPluginDependency</string>
+					<string>28.IBPluginDependency</string>
 					<string>8.IBEditorWindowLastContentRect</string>
 					<string>8.IBPluginDependency</string>
 				</object>
@@ -287,6 +318,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>Vote_ReportViewController</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -317,7 +349,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">27</int>
+			<int key="maxID">29</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -333,6 +365,7 @@
 							<string>infoButton</string>
 							<string>locationName</string>
 							<string>spinner</string>
+							<string>splash</string>
 							<string>textField</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -341,6 +374,7 @@
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UIActivityIndicatorView</string>
+							<string>UIImageView</string>
 							<string>UITextField</string>
 						</object>
 					</object>

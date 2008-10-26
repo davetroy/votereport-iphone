@@ -40,6 +40,7 @@
 	newImage = [buttonBackground stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
 	[button setBackgroundImage:newImage forState:UIControlStateSelected];
 	button.hidden = YES;
+	infoButton.hidden = YES;
 	
 	textField.font = [UIFont fontWithName:@"Helvetica" size:15.0];
 	textField.returnKeyType = UIReturnKeyDone;
@@ -57,9 +58,18 @@
 	printf("observed locationName update\n");
 	if (reporter.locationName) {
 		[spinner stopAnimating];
+		button.hidden = NO;
+		button.alpha = 0.0;
+		infoButton.hidden = NO;
+		infoButton.alpha = 0.0;
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.5];
 		locationName.text = reporter.locationName;
 		locationName.hidden = NO;
-		button.hidden = NO;
+		splash.alpha = 0.0;
+		button.alpha = 1.0;
+		infoButton.alpha = 1.0;
+ 		[UIView commitAnimations];
 	}
 }
 

@@ -34,6 +34,19 @@
     [locationManager startUpdatingLocation];
 }
 
+// deal with any errors - fail if we are not allowed to use location
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+	NSString *errorMsg;
+	if (error.code ==  kCLErrorDenied) {
+		errorMsg = @"Vote Report requires access to your location to work properly! Please call our automated phone-based system instead!";
+	} else {
+		errorMsg = @"Vote Report is unable to determine your location! Be sure you are not in airplane mode and have Wifi enabled, or please call our automated phone-based system!";
+	}
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Vote Report" message:errorMsg delegate:[[UIApplication sharedApplication] delegate]  cancelButtonTitle:@"Call Now" otherButtonTitles:nil];
+	[alert show];
+}	
+
 
 // Delegate method from the CLLocationManagerDelegate protocol.
 // Update a user's location and timezone at the server

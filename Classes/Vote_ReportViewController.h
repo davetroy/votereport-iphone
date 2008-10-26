@@ -15,6 +15,7 @@
 	IBOutlet UILabel *locationName;
 	IBOutlet UIButton *button;
 	IBOutlet UIButton *infoButton;
+	IBOutlet UIImageView *splash;
 	Reporter *reporter;
 }
 
