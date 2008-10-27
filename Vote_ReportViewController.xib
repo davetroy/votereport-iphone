@@ -161,6 +161,23 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 					</object>
+					<object class="IBUILabel" id="550559803">
+						<reference key="NSNextResponder" ref="259121778"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{259, 5}, {42, 21}}</string>
+						<reference key="NSSuperview" ref="259121778"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="IBUIText">Label</string>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwIDAAA</bytes>
+						</object>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">1.000000e+01</float>
+					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
@@ -223,6 +240,14 @@
 					</object>
 					<int key="connectionID">29</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">sliderValue</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="550559803"/>
+					</object>
+					<int key="connectionID">31</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -258,6 +283,7 @@
 							<reference ref="89677102"/>
 							<reference ref="75874523"/>
 							<reference ref="152317090"/>
+							<reference ref="550559803"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -296,6 +322,11 @@
 						<reference key="object" ref="152317090"/>
 						<reference key="parent" ref="259121778"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">30</int>
+						<reference key="object" ref="550559803"/>
+						<reference key="parent" ref="259121778"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -311,6 +342,7 @@
 					<string>24.IBPluginDependency</string>
 					<string>25.IBPluginDependency</string>
 					<string>28.IBPluginDependency</string>
+					<string>30.IBPluginDependency</string>
 					<string>8.IBEditorWindowLastContentRect</string>
 					<string>8.IBPluginDependency</string>
 				</object>
@@ -325,7 +357,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{370, 175}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{328, 300}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -349,7 +382,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">29</int>
+			<int key="maxID">31</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -364,6 +397,7 @@
 							<string>button</string>
 							<string>infoButton</string>
 							<string>locationName</string>
+							<string>sliderValue</string>
 							<string>spinner</string>
 							<string>splash</string>
 							<string>textField</string>
@@ -372,6 +406,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UIButton</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UIActivityIndicatorView</string>
 							<string>UIImageView</string>

@@ -16,6 +16,7 @@
 	IBOutlet UIButton *button;
 	IBOutlet UIButton *infoButton;
 	IBOutlet UIImageView *splash;
+	IBOutlet UILabel *sliderValue;
 	Reporter *reporter;
 }
 
