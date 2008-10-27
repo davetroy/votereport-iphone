@@ -7,7 +7,6 @@
 //
 
 #import "Vote_ReportViewController.h"
-#define kSliderHeight			7.0
 
 @implementation Vote_ReportViewController
 
@@ -50,33 +49,6 @@
 	textField.delegate = self;
 }
 
-// record the slider value
-- (void)sliderAction:(UISlider *)sender
-{
-	sliderValue.text = [NSString stringWithFormat:@"%2.0f", sender.value];
-}
-
--(void)addslider {
-	// Custom slider
-	CGRect frame = CGRectMake(0.0, 0.0, 120.0, kSliderHeight);
-	UISlider *customSlider = [[UISlider alloc] initWithFrame:frame];
-	[customSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
-	// in case the parent view draws with a custom color or gradient, use a transparent color
-	customSlider.backgroundColor = [UIColor clearColor];
-	UIImage *stretchLeftTrack = [[UIImage imageNamed:@"greenslide.png"]
-								 stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
-	UIImage *stretchRightTrack = [[UIImage imageNamed:@"redslide.png"]
-								  stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
-	[customSlider setThumbImage: [UIImage imageNamed:@"slider_ball.png"] forState:UIControlStateNormal];
-	[customSlider setMinimumTrackImage:stretchLeftTrack forState:UIControlStateNormal];
-	[customSlider setMaximumTrackImage:stretchRightTrack forState:UIControlStateNormal];
-	customSlider.minimumValue = 0.0;
-	customSlider.maximumValue = 100.0;
-	customSlider.continuous = YES;
-	customSlider.value = 50.0;
-	
-	[self.view addSubview:customSlider];	
-}
 
 // We must be getting notified of a location name update - it's all we Observe for
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -100,7 +72,6 @@
 		infoButton.alpha = 1.0;
  		[UIView commitAnimations];
 	}
-	[self addslider];
 }
 
 - (IBAction) doPushReportDetailView{

@@ -27,7 +27,7 @@
 	IBOutlet UIBarButtonItem	*playButton;
 	
 	BOOL						interruptedOnPlayback;
-	HTTPManager					*httprequest;
+	HTTPManager					*httpRequest;
 }
 
 @property (nonatomic, retain)	HTTPManager					*httpRequest;
