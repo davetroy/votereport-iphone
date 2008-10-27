@@ -103,6 +103,10 @@
 	[self addslider];
 }
 
+- (IBAction) doPushReportDetailView{
+	[self presentModalViewController:vote_ReportDetailViewController animated:YES];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);

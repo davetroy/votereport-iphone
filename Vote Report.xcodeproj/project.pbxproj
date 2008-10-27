@@ -14,6 +14,16 @@
 		056295C20EB56C8100040599 /* AudioQueueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 056295BC0EB56C8100040599 /* AudioQueueObject.m */; };
 		056295C30EB56C8100040599 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 056295BE0EB56C8100040599 /* AudioRecorder.m */; };
 		056295C40EB56C8100040599 /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056295C00EB56C8100040599 /* AudioViewController.m */; };
+		056296180EB60D1F00040599 /* CellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296040EB60D1F00040599 /* CellButton.m */; };
+		056296190EB60D1F00040599 /* CellPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296060EB60D1F00040599 /* CellPicker.m */; };
+		0562961A0EB60D1F00040599 /* CellSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296080EB60D1F00040599 /* CellSlider.m */; };
+		0562961B0EB60D1F00040599 /* CellTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0562960A0EB60D1F00040599 /* CellTextField.m */; };
+		0562961C0EB60D1F00040599 /* CellTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0562960C0EB60D1F00040599 /* CellTextView.m */; };
+		0562961D0EB60D1F00040599 /* DisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0562960F0EB60D1F00040599 /* DisplayCell.m */; };
+		0562961E0EB60D1F00040599 /* DisplayCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296110EB60D1F00040599 /* DisplayCell2.m */; };
+		0562961F0EB60D1F00040599 /* EditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296130EB60D1F00040599 /* EditableTableViewCell.m */; };
+		056296200EB60D1F00040599 /* SourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296150EB60D1F00040599 /* SourceCell.m */; };
+		056296210EB60D1F00040599 /* Vote_ReportDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296170EB60D1F00040599 /* Vote_ReportDetailViewController.m */; };
 		0572E8930EB4DA5600F73990 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572E8920EB4DA5600F73990 /* icon.png */; };
 		0572E89D0EB4DBA400F73990 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572E89C0EB4DBA400F73990 /* background.png */; };
 		0572E89F0EB4DBAA00F73990 /* logo_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572E89E0EB4DBAA00F73990 /* logo_splash.png */; };
@@ -45,6 +55,27 @@
 		056295BE0EB56C8100040599 /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
 		056295BF0EB56C8100040599 /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioViewController.h; sourceTree = "<group>"; };
 		056295C00EB56C8100040599 /* AudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioViewController.m; sourceTree = "<group>"; };
+		056296030EB60D1F00040599 /* CellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellButton.h; sourceTree = "<group>"; };
+		056296040EB60D1F00040599 /* CellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellButton.m; sourceTree = "<group>"; };
+		056296050EB60D1F00040599 /* CellPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellPicker.h; sourceTree = "<group>"; };
+		056296060EB60D1F00040599 /* CellPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellPicker.m; sourceTree = "<group>"; };
+		056296070EB60D1F00040599 /* CellSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellSlider.h; sourceTree = "<group>"; };
+		056296080EB60D1F00040599 /* CellSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellSlider.m; sourceTree = "<group>"; };
+		056296090EB60D1F00040599 /* CellTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellTextField.h; sourceTree = "<group>"; };
+		0562960A0EB60D1F00040599 /* CellTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellTextField.m; sourceTree = "<group>"; };
+		0562960B0EB60D1F00040599 /* CellTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellTextView.h; sourceTree = "<group>"; };
+		0562960C0EB60D1F00040599 /* CellTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellTextView.m; sourceTree = "<group>"; };
+		0562960D0EB60D1F00040599 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		0562960E0EB60D1F00040599 /* DisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayCell.h; sourceTree = "<group>"; };
+		0562960F0EB60D1F00040599 /* DisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayCell.m; sourceTree = "<group>"; };
+		056296100EB60D1F00040599 /* DisplayCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayCell2.h; sourceTree = "<group>"; };
+		056296110EB60D1F00040599 /* DisplayCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayCell2.m; sourceTree = "<group>"; };
+		056296120EB60D1F00040599 /* EditableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableTableViewCell.h; sourceTree = "<group>"; };
+		056296130EB60D1F00040599 /* EditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableTableViewCell.m; sourceTree = "<group>"; };
+		056296140EB60D1F00040599 /* SourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceCell.h; sourceTree = "<group>"; };
+		056296150EB60D1F00040599 /* SourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceCell.m; sourceTree = "<group>"; };
+		056296160EB60D1F00040599 /* Vote_ReportDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vote_ReportDetailViewController.h; sourceTree = "<group>"; };
+		056296170EB60D1F00040599 /* Vote_ReportDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vote_ReportDetailViewController.m; sourceTree = "<group>"; };
 		0572E8920EB4DA5600F73990 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0572E89C0EB4DBA400F73990 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		0572E89E0EB4DBAA00F73990 /* logo_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_splash.png; sourceTree = "<group>"; };
@@ -90,6 +121,27 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				056296030EB60D1F00040599 /* CellButton.h */,
+				056296040EB60D1F00040599 /* CellButton.m */,
+				056296050EB60D1F00040599 /* CellPicker.h */,
+				056296060EB60D1F00040599 /* CellPicker.m */,
+				056296070EB60D1F00040599 /* CellSlider.h */,
+				056296080EB60D1F00040599 /* CellSlider.m */,
+				056296090EB60D1F00040599 /* CellTextField.h */,
+				0562960A0EB60D1F00040599 /* CellTextField.m */,
+				0562960B0EB60D1F00040599 /* CellTextView.h */,
+				0562960C0EB60D1F00040599 /* CellTextView.m */,
+				0562960D0EB60D1F00040599 /* Constants.h */,
+				0562960E0EB60D1F00040599 /* DisplayCell.h */,
+				0562960F0EB60D1F00040599 /* DisplayCell.m */,
+				056296100EB60D1F00040599 /* DisplayCell2.h */,
+				056296110EB60D1F00040599 /* DisplayCell2.m */,
+				056296120EB60D1F00040599 /* EditableTableViewCell.h */,
+				056296130EB60D1F00040599 /* EditableTableViewCell.m */,
+				056296140EB60D1F00040599 /* SourceCell.h */,
+				056296150EB60D1F00040599 /* SourceCell.m */,
+				056296160EB60D1F00040599 /* Vote_ReportDetailViewController.h */,
+				056296170EB60D1F00040599 /* Vote_ReportDetailViewController.m */,
 				056295B90EB56C8100040599 /* AudioPlayer.h */,
 				056295BA0EB56C8100040599 /* AudioPlayer.m */,
 				056295BB0EB56C8100040599 /* AudioQueueObject.h */,
@@ -242,6 +294,16 @@
 				056295C20EB56C8100040599 /* AudioQueueObject.m in Sources */,
 				056295C30EB56C8100040599 /* AudioRecorder.m in Sources */,
 				056295C40EB56C8100040599 /* AudioViewController.m in Sources */,
+				056296180EB60D1F00040599 /* CellButton.m in Sources */,
+				056296190EB60D1F00040599 /* CellPicker.m in Sources */,
+				0562961A0EB60D1F00040599 /* CellSlider.m in Sources */,
+				0562961B0EB60D1F00040599 /* CellTextField.m in Sources */,
+				0562961C0EB60D1F00040599 /* CellTextView.m in Sources */,
+				0562961D0EB60D1F00040599 /* DisplayCell.m in Sources */,
+				0562961E0EB60D1F00040599 /* DisplayCell2.m in Sources */,
+				0562961F0EB60D1F00040599 /* EditableTableViewCell.m in Sources */,
+				056296200EB60D1F00040599 /* SourceCell.m in Sources */,
+				056296210EB60D1F00040599 /* Vote_ReportDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

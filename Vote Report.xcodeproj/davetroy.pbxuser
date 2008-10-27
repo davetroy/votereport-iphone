@@ -330,11 +330,6 @@
 		name = PollingPlaceViewController.h;
 		path = "/Users/davetroy/Development/iPhone/Vote Report/Classes/PollingPlaceViewController.h";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {865, 783}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 251}";
-		};
 	};
 	0572EA650EB50E7700F73990 /* PollingPlaceViewController.m */ = {
 		isa = PBXFileReference;
@@ -343,11 +338,6 @@
 		name = PollingPlaceViewController.m;
 		path = "/Users/davetroy/Development/iPhone/Vote Report/Classes/PollingPlaceViewController.m";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {900, 784}}";
-			sepNavSelRange = "{834, 0}";
-			sepNavVisRange = "{0, 1293}";
-		};
 	};
 	0572EA9F0EB516D000F73990 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -667,8 +657,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 246810223;
-			PBXWorkspaceStateSaveDate = 246810223;
+			PBXPerProjectTemplateStateSaveDate = 246811901;
+			PBXWorkspaceStateSaveDate = 246811901;
 		};
 		perUserProjectItems = {
 			051542670EB51C1A0092F7F4 = 051542670EB51C1A0092F7F4 /* PBXTextBookmark */;

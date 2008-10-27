@@ -1,0 +1,482 @@
+
+#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "AudioViewController.h"
+
+#define kLevelMeterWidth	238
+#define kLevelMeterHeight	45
+#define kLevelOverload		0.9
+#define kLevelHot			0.7
+#define kLevelMinimum		0.01
+
+void interruptionListenerCallback (
+	void	*inUserData,
+	UInt32	interruptionState
+) {
+	// This callback, being outside the implementation block, needs a reference 
+	//	to the AudioViewController object
+	AudioViewController *controller = (AudioViewController *) inUserData;
+	
+	if (interruptionState == kAudioSessionBeginInterruption) {
+
+		NSLog (@"Interrupted. Stopping playback or recording.");
+		
+		if (controller.audioRecorder) {
+			// if currently recording, stop
+			[controller recordOrStop: (id) controller];
+		} else if (controller.audioPlayer) {
+			// if currently playing, pause
+			[controller pausePlayback];
+			controller.interruptedOnPlayback = YES;
+		}
+
+	} else if ((interruptionState == kAudioSessionEndInterruption) && controller.interruptedOnPlayback) {
+		// if the interruption was removed, and the app had been playing, resume playback
+		[controller resumePlayback];
+		controller.interruptedOnPlayback = NO;
+	}
+}
+
+@implementation AudioViewController
+
+@synthesize httpRequest;
+@synthesize audioPlayer;			// the playback audio queue object
+@synthesize audioRecorder;			// the recording audio queue object
+@synthesize soundFileURL;			// the sound file to record to and to play back
+@synthesize recordingDirectory;		// the location to record into; it's the application's Documents directory
+@synthesize playButton;				// the play button, which toggles to display "stop"
+@synthesize recordButton;			// the record button, which toggles to display "stop"
+@synthesize levelMeter;				// a mono audio level meter to show average level, implemented using Core Animation
+@synthesize peakLevelMeter;			// a mono audio level meter to show peak level, implemented using Core Animation
+@synthesize peakGray;				// colors to use with the peak audio level display
+@synthesize peakOrange;
+@synthesize peakRed;
+@synthesize peakClear;
+@synthesize bargraphTimer;			// a timer for updating the level meter
+@synthesize audioLevels;			// an array of two floating point values that represents the current recording or playback audio level
+@synthesize peakLevels;				// an array of two floating point values that represents the current recording or playback audio level
+@synthesize statusSign;				// a UILabel object that says "Recording" or "Playback," or empty when stopped
+@synthesize interruptedOnPlayback;	// this allows playback to resume when an interruption ends. this app does not resume a recording for the user.
+
+- (id) initWithNibName: (NSString *) nibNameOrNil bundle: (NSBundle *) nibBundleOrNil {
+
+	self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
+
+	if (self != nil) {
+
+		// this app uses a fixed file name at a fixed location, so it makes sense to set the name and 
+		// URL here.
+		NSArray *filePaths =	NSSearchPathForDirectoriesInDomains (
+		
+									NSDocumentDirectory, 
+									NSUserDomainMask,
+									YES
+								); 
+								
+		self.recordingDirectory = [filePaths objectAtIndex: 0];
+	
+		CFStringRef fileString = (CFStringRef) [NSString stringWithFormat: @"%@/Recording.caf", self.recordingDirectory];
+
+		// create the file URL that identifies the file that the recording audio queue object records into
+		CFURLRef fileURL =	CFURLCreateWithFileSystemPath (
+								NULL,
+								fileString,
+								kCFURLPOSIXPathStyle,
+								false
+							);
+		NSLog (@"Recorded file path: %@", fileURL); // shows the location of the recorded file
+		
+		// save the sound file URL as an object attribute (as an NSURL object)
+		if (fileURL) {
+			self.soundFileURL	= (NSURL *) fileURL;
+			CFRelease (fileURL);
+		}
+		
+		// allocate memory to hold audio level values
+		audioLevels = calloc (2, sizeof (AudioQueueLevelMeterState));
+		peakLevels = calloc (2, sizeof (AudioQueueLevelMeterState));
+
+		// initialize the audio session object for this application,
+		//		registering the callback that Audio Session Services will invoke 
+		//		when there's an interruption
+		AudioSessionInitialize (
+			NULL,
+			NULL,
+			interruptionListenerCallback,
+			self
+		);
+	}
+	return self;
+}
+
+- (void) addBargraphToView: (UIView *) parentView {
+
+	// static image for showing average level
+	UIImage *soundbarImage		= [[UIImage imageNamed: @"soundbar_mono.png"] retain];
+
+	// background colors for generated image for showing peak level
+	self.peakClear				= [UIColor clearColor];
+	self.peakGray				= [UIColor lightGrayColor];
+	self.peakOrange				= [UIColor orangeColor];
+	self.peakRed				= [UIColor redColor]; 
+	
+	levelMeter					= [CALayer layer];
+	levelMeter.anchorPoint		= CGPointMake (0.0, 0.5);						// anchor to halfway up the left edge
+	levelMeter.frame			= CGRectMake (41, 131, 0, kLevelMeterHeight);	// set width to 0 to start to completely hide the bar graph segements
+	levelMeter.contents			= (UIImage *) soundbarImage.CGImage;
+
+	peakLevelMeter				= [CALayer layer];
+	peakLevelMeter.frame		= CGRectMake (41, 131, 0, kLevelMeterHeight);
+	peakLevelMeter.anchorPoint	= CGPointMake (0.0, 0.5);
+	peakLevelMeter.backgroundColor = peakGray.CGColor;
+
+	peakLevelMeter.bounds		= CGRectMake (0, 0, 0, kLevelMeterHeight);
+	peakLevelMeter.contentsRect	= CGRectMake (0, 0, 1.0, 1.0);
+
+	[parentView.layer addSublayer: levelMeter];
+	[parentView.layer addSublayer: peakLevelMeter];
+}
+
+-(void) submitAudioReport {
+	NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
+	
+	self.httpRequest = [[HTTPManager alloc] init];
+	self.httpRequest.target = self;
+	self.httpRequest.targetSelector = @selector(reportComplete:);
+		
+	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+							@"60", @"report[wait_time]",
+							@"Arnold Elementary", @"polling_place[name]",
+							udid, @"reporter[uniqueid]",
+							@"Fred J", @"reporter[name]",
+							@"Arnold, MD", @"reporter[profile_location]",
+							@"39.024,-76.511", @"reporter[latlon]",
+							[self.soundFileURL path], @"report[soundfile]",
+							nil];
+	[self.httpRequest performRequestWithMethod:@"POST" toUrl:VOTEREPORT_REPORTS_URL withParameters:params];	
+	[self.httpRequest uploadFile:[self.soundFileURL path] toUrl:VOTEREPORT_REPORTS_URL];
+	
+}
+
+- (void) viewDidLoad {
+	
+	NSFileManager * fileManager = [NSFileManager defaultManager];
+	
+	// on the very first launch of the application, there's no file to play,
+	//	so gray out the Play button
+	if ([fileManager fileExistsAtPath: [NSString stringWithFormat: @"%@/Recording.caf", self.recordingDirectory]] != TRUE) {
+		[self.playButton setEnabled: NO];
+	}
+
+
+	[statusSign setFont: [UIFont fontWithName: @"Helvetica" size: 24.0]];
+}
+
+
+-(void)reportComplete:(HTTPManager *)manager
+{
+	if ([manager successful])
+		printf("report completed successfully\n");
+	else
+		printf("report failed!\n");
+}
+
+// this method gets called (by property listener callback functions) when a recording or playback 
+// audio queue object starts or stops. 
+- (void) updateUserInterfaceOnAudioQueueStateChange: (AudioQueueObject *) inQueue {
+
+	NSAutoreleasePool *uiUpdatePool = [[NSAutoreleasePool alloc] init];
+
+	NSLog (@"updateUserInterfaceOnAudioQueueStateChange just called.");
+
+	// the audio queue (playback or record) just started
+	if ([inQueue isRunning]) {
+	
+		// create a timer for updating the audio level meter
+		self.bargraphTimer = [NSTimer scheduledTimerWithTimeInterval:	0.05		// seconds
+															target:		self
+															selector:	@selector (updateBargraph:)
+															userInfo:	inQueue		// makes the currently-active audio queue (record or playback) available to the updateBargraph method
+															repeats:	YES];
+		// playback just started
+		if (inQueue == self.audioPlayer) {
+		
+			NSLog (@"playback just started.");
+			[self.recordButton setEnabled: NO];
+			[self.playButton setTitle: @"Stop"];
+			[self.statusSign setText: @"Playback"];
+			[self.statusSign setTextColor: [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0]];
+
+		// recording just started
+		} else if (inQueue == self.audioRecorder) {
+		
+			NSLog (@"recording just started.");
+			[self.playButton setEnabled: NO];
+			NSLog (@"setting Record button title to Stop.");
+			[self.recordButton setTitle: @"Stop"];
+			[self.statusSign setText: @"Recording"];
+			[self.statusSign setTextColor: [UIColor colorWithRed: 0.67 green: 0.0 blue: 0.0 alpha: 1.0]];
+		}
+	// the audio queue (playback or record) just stopped
+	} else {
+
+		// playback just stopped
+		if (inQueue == self.audioPlayer) {
+		
+			NSLog (@"playback just stopped.");
+			[self.recordButton setEnabled: YES];
+			[self.playButton setTitle: @"Play"];
+
+			[audioPlayer release];
+			audioPlayer = nil;
+
+		// recording just stopped
+		} else if (inQueue == self.audioRecorder) {
+			NSLog (@"recording just stopped.");
+			[self.playButton setEnabled: YES];
+			NSLog (@"setting Record button title to Record.");
+			[self.recordButton setTitle: @"Record"];
+
+			[audioRecorder release];
+			audioRecorder = nil;
+		}
+
+		if (self.bargraphTimer) {
+		
+			[self.bargraphTimer invalidate];
+			[self.bargraphTimer release];
+			bargraphTimer = nil;
+		}
+
+		[self.statusSign setText: @""];
+		[self resetBargraph];
+	}
+	
+	[uiUpdatePool drain];
+}
+
+
+// respond to a tap on the Record button. If stopped, start recording. If recording, stop.
+// an audio queue object is created for each recording, and destroyed when the recording finishes.
+- (IBAction) recordOrStop: (id) sender {
+
+	NSLog (@"recordOrStop:");
+	
+	// if not recording, start recording
+	if (self.audioRecorder == nil) {
+	
+		// before instantiating the recording audio queue object, 
+		//	set the audio session category
+		UInt32 sessionCategory = kAudioSessionCategory_RecordAudio;
+		AudioSessionSetProperty (
+			kAudioSessionProperty_AudioCategory,
+			sizeof (sessionCategory),
+			&sessionCategory
+		);
+			
+		// the first step in recording is to instantiate a recording audio queue object
+		AudioRecorder *theRecorder = [[AudioRecorder alloc] initWithURL: self.soundFileURL];
+
+		// if the audio queue was successfully created, initiate recording.
+		if (theRecorder) {
+
+			self.audioRecorder = theRecorder;
+			[theRecorder release];								// decrements the retain count for the theRecorder object
+			
+			[self.audioRecorder setNotificationDelegate: self];	// sets up the recorder object to receive property change notifications 
+																//	from the recording audio queue object
+
+			// activate the audio session immediately before recording starts
+			AudioSessionSetActive (true);
+			NSLog (@"sending record message to recorder object.");
+			[self.audioRecorder record];						// starts the recording audio queue object
+		}
+
+	// else if recording, stop recording
+	} else if (self.audioRecorder) {
+
+			[self.audioRecorder setStopping: YES];				// this flag lets the property listener callback
+																//	know that the user has tapped Stop
+			NSLog (@"sending stop message to recorder object.");
+			[self.audioRecorder stop];							// stops the recording audio queue object. the object 
+																//	remains in existence until it actually stops, at
+																//	which point the property listener callback calls
+																//	this class's updateUserInterfaceOnAudioQueueStateChange:
+																//	method, which releases the recording object.
+			// now that recording has stopped, deactivate the audio session
+			AudioSessionSetActive (false);
+		
+	}
+}
+
+// respond to a tap on the Play button. If stopped, start playing. If playing, stop.
+- (IBAction) playOrStop: (id) sender {
+
+	NSLog (@"playOrStop:");
+	
+	// if not playing, start playing
+	if (self.audioPlayer == nil) {
+	
+		// before instantiating the playback audio queue object, 
+		//	set the audio session category
+		UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
+		AudioSessionSetProperty (
+			kAudioSessionProperty_AudioCategory,
+			sizeof (sessionCategory),
+			&sessionCategory
+		);
+			
+		AudioPlayer *thePlayer = [[AudioPlayer alloc] initWithURL: self.soundFileURL];
+		
+		if (thePlayer) {
+		
+			self.audioPlayer = thePlayer;
+			[thePlayer release];								// decrements the retain count for the thePlayer object
+			
+			[self.audioPlayer setNotificationDelegate: self];	// sets up the playback object to receive property change notifications from the playback audio queue object
+
+			// activate the audio session immmediately before playback starts
+			AudioSessionSetActive (true);
+			NSLog (@"sending play message to play object.");
+			[self.audioPlayer play];
+			[self submitAudioReport];
+		}
+		
+	// else if playing, stop playing
+	} else if (self.audioPlayer) {
+	
+			NSLog (@"User tapped Stop to stop playing.");
+			[self.audioPlayer setAudioPlayerShouldStopImmediately: YES];
+			NSLog (@"Calling AudioQueueStop from controller object.");
+			[self.audioPlayer stop];
+
+			// now that playback has stopped, deactivate the audio session
+			AudioSessionSetActive (false);
+	}  
+}
+
+// pausing is only ever invoked by the interruption listener callback function, which
+//	is why this isn't an IBAction method(that is, 
+//	there's no explicit UI for invoking this method)
+- (void) pausePlayback {
+
+	if (self.audioPlayer) {
+	
+		NSLog (@"Pausing playback on interruption.");
+		[self.audioPlayer pause];
+	}
+}
+
+// resuming playback is only every invoked if the user rejects an incoming call
+//	or other interruption, which is why this isn't an IBAction method (that is, 
+//	there's no explicit UI for invoking this method)
+- (void) resumePlayback {
+	
+	NSLog (@"Resuming playback on end of interruption.");
+
+	// before resuming playback, set the audio session
+	// category and activate it
+	UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
+	AudioSessionSetProperty (
+		kAudioSessionProperty_AudioCategory,
+		sizeof (sessionCategory),
+		&sessionCategory
+	);
+	AudioSessionSetActive (true);
+
+	[self.audioPlayer resume];
+}
+
+// Core Animation-based audio level meter updating method
+- (void) updateBargraph: (NSTimer *) timer {
+
+	AudioQueueObject *activeQueue = (AudioQueueObject *) [timer userInfo];
+	
+	if (activeQueue) {
+	
+		[activeQueue getAudioLevels: self.audioLevels peakLevels: self.peakLevels];
+//		NSLog (@"Average: %f, Peak: %f", audioLevels[0], peakLevels[0]);
+		
+		[CATransaction begin];
+
+			[CATransaction setValue: [NSNumber numberWithBool:YES] forKey: kCATransactionDisableActions];
+
+			levelMeter.bounds =			CGRectMake (
+											0,
+											0,
+											(audioLevels[0] > 1.0 ? 1.0 : audioLevels[0]) * kLevelMeterWidth,
+											kLevelMeterHeight
+										);
+
+			levelMeter.contentsRect	=	CGRectMake (
+											0,
+											0,
+											audioLevels[0],
+											1.0
+										);
+										
+			peakLevelMeter.frame =		CGRectMake (
+											41.0 + (peakLevels[0] > 1.0 ? 1.0 : peakLevels[0] )* kLevelMeterWidth,
+											131,
+											3,
+											kLevelMeterHeight
+										);
+			peakLevelMeter.bounds =		CGRectMake (
+											0,
+											0,
+											3,
+											kLevelMeterHeight
+										);
+
+			if (peakLevels[0] > kLevelOverload) {
+				peakLevelMeter.backgroundColor = self.peakRed.CGColor;
+			} else if (peakLevels[0] > kLevelHot) {
+				peakLevelMeter.backgroundColor = self.peakOrange.CGColor;
+			} else if (peakLevels[0] > kLevelMinimum) {
+				peakLevelMeter.backgroundColor = self.peakGray.CGColor;
+			} else {
+				peakLevelMeter.backgroundColor = self.peakClear.CGColor;
+			}
+
+		[CATransaction commit];
+	}
+}
+
+
+- (void) resetBargraph {
+
+	levelMeter.bounds		= CGRectMake (0, 0, 0, kLevelMeterHeight);
+	peakLevelMeter.frame	= CGRectMake (41, 131, 3, kLevelMeterHeight);
+	peakLevelMeter.bounds	= CGRectMake (0, 0, 0, kLevelMeterHeight);
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	// Return YES for supported orientations
+	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+
+- (void) didReceiveMemoryWarning {
+
+	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
+
+	// the most likely reason for a memory warning is that the file being recorded is getting
+	// too big -- so stop recording. This can be tested in the iPhone Simulator.
+	if (self.audioRecorder) {
+		[self recordOrStop: self];
+	}
+}
+
+
+
+- (void) dealloc {
+
+	[recordButton		release];
+	[playButton			release];
+	
+	[super dealloc];
+}
+
+
+@end
