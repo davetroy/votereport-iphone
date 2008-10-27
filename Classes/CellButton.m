@@ -15,7 +15,7 @@ NSString *kCellButton_ID = @"CellButton_ID";
 	return self;
 }
 
-- (void)setView:(UIButton *)inView
+- (void)setView:(UIView *)inView
 {
 	view = inView;
 	[self.view retain];

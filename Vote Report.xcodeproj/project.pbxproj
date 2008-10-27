@@ -24,6 +24,10 @@
 		2899E5220DE3E06400AC0155 /* Vote_ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* Vote_ReportViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* Vote_ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* Vote_ReportViewController.m */; };
+		51DE48F90EB59EDE007C8A81 /* slider_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DE48F80EB59EDE007C8A81 /* slider_ball.png */; };
+		51DE48FB0EB59EE7007C8A81 /* redslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DE48FA0EB59EE7007C8A81 /* redslide.png */; };
+		51DE48FD0EB59EF0007C8A81 /* greenslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DE48FC0EB59EF0007C8A81 /* greenslide.png */; };
+		51DE49010EB59F86007C8A81 /* CellSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DE48FF0EB59F86007C8A81 /* CellSlider.m */; };
 		51F4EF840EB5816F00326D9C /* CellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F4EF7F0EB5816F00326D9C /* CellButton.m */; };
 		51F4EF850EB5816F00326D9C /* CellTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F4EF810EB5816F00326D9C /* CellTextField.m */; };
 		51F4EF860EB5816F00326D9C /* CellTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F4EF830EB5816F00326D9C /* CellTextView.m */; };
@@ -31,6 +35,7 @@
 		51F4EF8C0EB5817D00326D9C /* EditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F4EF8A0EB5817D00326D9C /* EditableTableViewCell.m */; };
 		51F4EF8F0EB5818F00326D9C /* SourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F4EF8E0EB5818F00326D9C /* SourceCell.m */; };
 		51F4EF920EB581A000326D9C /* Vote_ReportDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F4EF910EB581A000326D9C /* Vote_ReportDetailViewController.m */; };
+		51F4F00A0EB58CF200326D9C /* CellPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F4F0090EB58CF200326D9C /* CellPicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +65,11 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Vote_Report_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vote_Report_Prefix.pch; sourceTree = "<group>"; };
 		515639D70EB56333008654D0 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		51DE48F80EB59EDE007C8A81 /* slider_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_ball.png; sourceTree = "<group>"; };
+		51DE48FA0EB59EE7007C8A81 /* redslide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redslide.png; sourceTree = "<group>"; };
+		51DE48FC0EB59EF0007C8A81 /* greenslide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenslide.png; sourceTree = "<group>"; };
+		51DE48FF0EB59F86007C8A81 /* CellSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CellSlider.m; path = Classes/CellSlider.m; sourceTree = "<group>"; };
+		51DE49000EB59F86007C8A81 /* CellSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellSlider.h; path = Classes/CellSlider.h; sourceTree = "<group>"; };
 		51F4EF7E0EB5816F00326D9C /* CellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellButton.h; path = Classes/CellButton.h; sourceTree = "<group>"; };
 		51F4EF7F0EB5816F00326D9C /* CellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CellButton.m; path = Classes/CellButton.m; sourceTree = "<group>"; };
 		51F4EF800EB5816F00326D9C /* CellTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellTextField.h; path = Classes/CellTextField.h; sourceTree = "<group>"; };
@@ -74,6 +84,8 @@
 		51F4EF8E0EB5818F00326D9C /* SourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SourceCell.m; path = Classes/SourceCell.m; sourceTree = "<group>"; };
 		51F4EF900EB581A000326D9C /* Vote_ReportDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vote_ReportDetailViewController.h; sourceTree = "<group>"; };
 		51F4EF910EB581A000326D9C /* Vote_ReportDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vote_ReportDetailViewController.m; sourceTree = "<group>"; };
+		51F4F0080EB58CF200326D9C /* CellPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellPicker.h; path = Classes/CellPicker.h; sourceTree = "<group>"; };
+		51F4F0090EB58CF200326D9C /* CellPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CellPicker.m; path = Classes/CellPicker.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +157,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				51DE48FC0EB59EF0007C8A81 /* greenslide.png */,
+				51DE48FA0EB59EE7007C8A81 /* redslide.png */,
+				51DE48F80EB59EDE007C8A81 /* slider_ball.png */,
 				0572E9150EB4EFFE00F73990 /* whiteButton.png */,
 				0572E9160EB4EFFE00F73990 /* blueButton.png */,
 				0572E89C0EB4DBA400F73990 /* background.png */,
@@ -172,6 +187,10 @@
 		515639C60EB56305008654D0 /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
+				51DE48FF0EB59F86007C8A81 /* CellSlider.m */,
+				51DE49000EB59F86007C8A81 /* CellSlider.h */,
+				51F4F0080EB58CF200326D9C /* CellPicker.h */,
+				51F4F0090EB58CF200326D9C /* CellPicker.m */,
 				51F4EF8D0EB5818F00326D9C /* SourceCell.h */,
 				51F4EF8E0EB5818F00326D9C /* SourceCell.m */,
 				51F4EF870EB5817D00326D9C /* DisplayCell.h */,
@@ -237,6 +256,9 @@
 				0572E89F0EB4DBAA00F73990 /* logo_splash.png in Resources */,
 				0572E9170EB4EFFE00F73990 /* whiteButton.png in Resources */,
 				0572E9180EB4EFFE00F73990 /* blueButton.png in Resources */,
+				51DE48F90EB59EDE007C8A81 /* slider_ball.png in Resources */,
+				51DE48FB0EB59EE7007C8A81 /* redslide.png in Resources */,
+				51DE48FD0EB59EF0007C8A81 /* greenslide.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +282,8 @@
 				51F4EF8C0EB5817D00326D9C /* EditableTableViewCell.m in Sources */,
 				51F4EF8F0EB5818F00326D9C /* SourceCell.m in Sources */,
 				51F4EF920EB581A000326D9C /* Vote_ReportDetailViewController.m in Sources */,
+				51F4F00A0EB58CF200326D9C /* CellPicker.m in Sources */,
+				51DE49010EB59F86007C8A81 /* CellSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

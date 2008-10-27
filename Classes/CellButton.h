@@ -47,15 +47,14 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 */
 
 #import <UIKit/UIKit.h>
-#import "EditableTableViewCell.h"
 
 // cell identifier for this custom cell
 extern NSString *kCellButton_ID;
 
 @interface CellButton : UITableViewCell{
-    UIButton *view;
+    UIView *view;
 }
 
-@property (nonatomic, retain) UIButton *view;
+@property (nonatomic, retain) UIView *view;
 
 @end

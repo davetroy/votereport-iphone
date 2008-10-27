@@ -3,11 +3,41 @@
 #import "CellTextView.h"
 #import "CellTextField.h"
 #import "CellButton.h"
+#import "CellPicker.h"
+#import "CellSlider.h"
 #import "SourceCell.h"
 #import "Constants.h"
 
 
 @implementation Vote_ReportDetailViewController
+
+- (void)sliderAction:(UISlider *)sender
+{
+	ratingSliderCell.label.text = [NSString stringWithFormat:@"%2.0f", sender.value];
+	//NSLog(@"ratingLabel.text=%@",ratingLabel.text);
+}
+
+-(UISlider*) create_UISlider {
+	// Custom slider
+	CGRect frame = CGRectMake(0.0, 0.0, 120.0, kSliderHeight);
+	UISlider *customSlider = [[UISlider alloc] initWithFrame:frame];
+	[customSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
+	// in case the parent view draws with a custom color or gradient, use a transparent color
+	customSlider.backgroundColor = [UIColor clearColor];
+	UIImage *stretchLeftTrack = [[UIImage imageNamed:@"greenslide.png"]
+								 stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
+	UIImage *stretchRightTrack = [[UIImage imageNamed:@"redslide.png"]
+								  stretchableImageWithLeftCapWidth:10.0 topCapHeight:0.0];
+	[customSlider setThumbImage: [UIImage imageNamed:@"slider_ball.png"] forState:UIControlStateNormal];
+	[customSlider setMinimumTrackImage:stretchLeftTrack forState:UIControlStateNormal];
+	[customSlider setMaximumTrackImage:stretchRightTrack forState:UIControlStateNormal];
+	customSlider.minimumValue = 0.0;
+	customSlider.maximumValue = 100.0;
+	customSlider.continuous = YES;
+	customSlider.value = 50.0;
+
+	return customSlider;
+}
 
 #pragma mark
 #pragma mark UITextField - rounded
@@ -64,6 +94,26 @@
 	return returnButton;
 }
 
+- (UIPickerView *)create_UIPickerView
+{
+	pickerViewArray = [[NSArray arrayWithObjects:
+								 @"No Wait Time",
+								 @"Less Than 5 Minutes",
+								 @"5-15 Minute Wait",
+								 @"15-30 Minute Wait",
+								 @"30-45 Minute Wait",
+								 @"45-60 Minute Wait",
+								 @"Over 1 Hour Wait",
+								 @"Over 2 Hour Wait",
+								 nil] retain];
+	UIPickerView *view = [[UIPickerView alloc] initWithFrame:CGRectZero];
+	
+	view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	view.delegate = self;
+	view.showsSelectionIndicator = YES;	// note this is default to NO
+	return view;
+}
+
 
 /*
 - (void)loadView 
@@ -92,6 +142,21 @@
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	nameTextField = [[self createTextField_Rounded] retain];
+	pollingPlaceTextField = [[self createTextField_Rounded] retain];
+	ratingSlider = [[self create_UISlider] retain];
+	waitingTime = @"Select Wait time";
+	pickerViewArray = [[NSArray arrayWithObjects:
+						@"No Wait Time",
+						@"Less Than 5 Minutes",
+						@"5-15 Minute Wait",
+						@"15-30 Minute Wait",
+						@"30-45 Minute Wait",
+						@"45-60 Minute Wait",
+						@"Over 1 Hour Wait",
+						@"Over 2 Hour Wait",
+						nil] retain];
+	
 }
 
 
@@ -136,14 +201,17 @@
 	}
 	return num;
 }
+
+
+
 - (UITableViewCell *)obtainTableTextFieldCellForRow:(NSInteger)row
 {
 	UITableViewCell *cell = nil;
 	
 	if (row == 0)
-		cell = [self.tableView dequeueReusableCellWithIdentifier:kCellTextField_ID];
+		cell = [tableView dequeueReusableCellWithIdentifier:kCellTextField_ID];
 	else if (row == 1)
-		cell = [self.tableView dequeueReusableCellWithIdentifier:kSourceCell_ID];
+		cell = [tableView dequeueReusableCellWithIdentifier:kSourceCell_ID];
 	
 	if (cell == nil)
 	{
@@ -161,9 +229,9 @@
 	UITableViewCell *cell = nil;
 	
 	if (row == 0)
-		cell = [self.tableView dequeueReusableCellWithIdentifier:kCellTextView_ID];
+		cell = [tableView dequeueReusableCellWithIdentifier:kCellTextView_ID];
 	else if (row == 1)
-		cell = [self.tableView dequeueReusableCellWithIdentifier:kSourceCell_ID];
+		cell = [tableView dequeueReusableCellWithIdentifier:kSourceCell_ID];
 	
 	if (cell == nil)
 	{
@@ -180,7 +248,7 @@
 {
 	UITableViewCell *cell = nil;
 	
-	cell = [self.tableView dequeueReusableCellWithIdentifier:kCellSwitch_ID];
+	cell = [tableView dequeueReusableCellWithIdentifier:kCellSwitch_ID];
 	
 	if (cell == nil)
 	{
@@ -195,9 +263,9 @@
 	UITableViewCell *cell = nil;
 	
 	if (row == 0)
-		cell = [self.tableView dequeueReusableCellWithIdentifier:kDisplayCell_ID];
+		cell = [tableView dequeueReusableCellWithIdentifier:kDisplayCell_ID];
 	else if (row == 1)
-		cell = [self.tableView dequeueReusableCellWithIdentifier:kSourceCell_ID];
+		cell = [tableView dequeueReusableCellWithIdentifier:kSourceCell_ID];
 	
 	if (cell == nil)
 	{
@@ -213,7 +281,7 @@
 {
 	UITableViewCell *cell = nil;
 
-	cell = [self.tableView dequeueReusableCellWithIdentifier:kCellButton_ID];
+	cell = [tableView dequeueReusableCellWithIdentifier:kCellButton_ID];
 	
 	if (cell == nil)
 	{
@@ -222,6 +290,48 @@
 	
 	
 	
+	return cell;
+}
+
+- (UITableViewCell *)obtainTablePickerCellForRow:(NSInteger)row
+{
+	UITableViewCell *cell = nil;
+	
+	if (row == 0)
+		cell = [tableView dequeueReusableCellWithIdentifier:kCellPicker_ID];
+	else if (row == 1)
+		cell = [tableView dequeueReusableCellWithIdentifier:kSourceCell_ID];
+	
+	if (cell == nil)
+	{
+		if (row == 0)
+			cell = [[[CellPicker alloc] initWithFrame:CGRectZero reuseIdentifier:kCellPicker_ID] autorelease];
+		else if (row == 1)
+			cell = [[[SourceCell alloc] initWithFrame:CGRectZero reuseIdentifier:kSourceCell_ID] autorelease];
+	}
+	return cell;
+}
+
+- (UITableViewCell *)obtainTableSliderCellForRow:(NSInteger)row
+{
+	UITableViewCell *cell = nil;
+	
+	if (row == 0)
+		cell = [tableView dequeueReusableCellWithIdentifier:kCellSlider_ID];
+	else if (row == 1)
+		cell = [tableView dequeueReusableCellWithIdentifier:kSourceCell_ID];
+	
+	if (cell == nil)
+	{
+		if (row == 0)
+		{
+			cell = [[[CellSlider alloc] initWithFrame:CGRectZero reuseIdentifier:kCellSlider_ID] autorelease];
+			ratingSliderCell = [cell retain];
+			
+		}
+		else if (row == 1)
+			cell = [[[SourceCell alloc] initWithFrame:CGRectZero reuseIdentifier:kSourceCell_ID] autorelease];
+	}
 	return cell;
 }
 
@@ -240,7 +350,7 @@
 				cell = [self obtainTableDisplayCellForRow:row];
 				break;
 			case 3: //Overall Rating
-				cell = [self obtainTableTextFieldCellForRow:row];
+				cell = [self obtainTableSliderCellForRow:row];
 				break;
 			case 4: //Other Problems
 				cell = [self obtainTableSwitchCellForRow:row];
@@ -271,7 +381,7 @@
 			if (row == 0)
 			{
 				// this cell hosts the UISwitch control
-				((CellTextField *)sourceCell).view = [self createTextField_Rounded];
+				((CellTextField *)sourceCell).view = nameTextField;
 			}
 			else
 			{
@@ -283,7 +393,7 @@
 			if (row == 0)
 			{
 				// this cell hosts the UISwitch control
-				((CellTextField *)sourceCell).view = [self createTextField_Rounded];
+				((CellTextField *)sourceCell).view = pollingPlaceTextField;
 			}
 			else
 			{
@@ -295,7 +405,7 @@
 			if (row == 0)
 			{
 				// this cell hosts the UISwitch control
-				((DisplayCell *)sourceCell).nameLabel.text = @"Wait time";
+				((DisplayCell *)sourceCell).nameLabel.text = waitingTime;
 			}
 			else
 			{
@@ -307,12 +417,12 @@
 			if (row == 0)
 			{
 				// this cell hosts the UISwitch control
-				((CellTextField *)sourceCell).view = [self createTextField_Rounded];
+				((CellSlider *)sourceCell).view = ratingSlider;
 			}
 			else
 			{
 				// this cell hosts the info on where to find the code
-				((SourceCell *)sourceCell).sourceLabel.text = @"Please enter your overall rating.";
+				((SourceCell *)sourceCell).sourceLabel.text = @"Please enter your overall rating. (0-bad, 100-good)";
 			}
 			break;
 		case 4: //Other Problems
@@ -409,18 +519,75 @@
  */
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath {
-    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+- (void)tableView:(UITableView *)itableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath {
+    [itableView deselectRowAtIndexPath:[itableView indexPathForSelectedRow] animated:YES];
 	NSInteger section = newIndexPath.section;
 	
 	if (section==2){
-		[self presentModalViewController:pickerViewController animated:YES];
+		[itableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+		[self.view bringSubviewToFront:pickerView];
+		pickerView.hidden = NO;
+		
+		//[self presentModalViewController:pickerViewController animated:YES];
 	}
+}
+
+
+///////////////////////////////////////
+//
+// UIPickerViewDelegate
+//
+//////////////////////////////////////
+
+- (void)pickerView:(UIPickerView *)ipickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+	waitingTime = [pickerViewArray objectAtIndex:row];
+	ipickerView.hidden = YES;
+	[tableView reloadData];
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+	NSString *returnStr;
+	returnStr = [pickerViewArray objectAtIndex:row];
+	return returnStr;
+}
+
+/*
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+	CGFloat componentWidth;
+	if (component == 0)
+		componentWidth = 240.0;	// first column size is wider to hold names
+	else
+		componentWidth = 40.0;	// second column is narrower to show numbers
+	return componentWidth;
+}
+*/
+/*
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+	return 40.0;
+}
+*/
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+	return [pickerViewArray count];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+	return 1;
 }
 
 
 - (void)dealloc {
     [super dealloc];
+	[nameTextField release];
+	[pollingPlaceTextField release];
+	[ratingSlider release];
+	[ratingSliderCell release];
+	[waitingTime release];
 }
 
 @end
