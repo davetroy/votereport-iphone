@@ -21,6 +21,7 @@
 						  toUrl:(NSString *)url
 				 withParameters:(NSDictionary *)parameters;
 -(NSString*)getResponseText;
+-(void)uploadFile:(NSString *)filename toUrl:(NSString *)url;
 
 @property (nonatomic, retain) NSURLCache *cache;
 @property (nonatomic, retain) NSData *receivedData;

@@ -28,13 +28,33 @@
 	return self;
 }
 
+-(void)uploadFile:(NSString *)filename toUrl:(NSString *)url
+{
+	NSString *boundary = [[UIDevice currentDevice] uniqueIdentifier];
+	
+	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+	[urlRequest setHTTPMethod:@"POST"];
+	[urlRequest setValue: [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
+	
+	NSData *data = [NSData dataWithContentsOfFile:filename];
+	NSMutableData *postData = [NSMutableData dataWithCapacity:[data length] + 512];
+	[postData appendData: [[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+	[postData appendData: [[NSString stringWithFormat: @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n\r\n", filename, @"uploaded"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[postData appendData:data];
+	[postData appendData: [[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+	[urlRequest setHTTPBody:postData];
+	
+	printf("http upload: %s [POST]\n", [url UTF8String]);
+	myConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+}
+
 - (void)performRequestWithMethod:(NSString *)method
-							   toUrl:(NSString *)url
-					  withParameters:(NSDictionary *)parameters
+						   toUrl:(NSString *)url
+				  withParameters:(NSDictionary *)parameters
 {
 	NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
-																cachePolicy:NSURLRequestUseProtocolCachePolicy
-															timeoutInterval:timeout];
+															cachePolicy:NSURLRequestUseProtocolCachePolicy
+														timeoutInterval:timeout];
 	if (parameters) {
 		NSMutableString* params = [[[NSMutableString alloc] init] autorelease];  
 		for (id key in parameters)  
@@ -45,7 +65,7 @@
 			  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];  
 		}  
 		[params deleteCharactersInRange:NSMakeRange([params length] - 1, 1)];  
-
+		
 		if ([method isEqual:@"GET"]) {
 			NSMutableString* urlWithParams = [NSMutableString stringWithString:url];
 			[urlWithParams appendFormat:@"?%@", params];
@@ -62,7 +82,7 @@
 	// PUT does not set form data header correctly; address this
 	if ([method isEqual:@"PUT"])
 		[theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-
+	
 	printf("http async: %s [%s]\n", [url UTF8String], [method UTF8String]);
 	myConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self startImmediately:YES];
 	if (myConnection)
@@ -112,8 +132,8 @@
 
 -(NSString*)getResponseText {  
     NSString *responseText = [[[NSString alloc]
-            initWithData:receivedData   
-            encoding:NSUTF8StringEncoding] autorelease];
+							   initWithData:receivedData   
+							   encoding:NSUTF8StringEncoding] autorelease];
 	return responseText;
 }  
 
