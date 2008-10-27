@@ -16,10 +16,13 @@
 	IBOutlet UIButton *button;
 	IBOutlet UIButton *infoButton;
 	IBOutlet UIImageView *splash;
+	IBOutlet UIViewController *vote_ReportDetailViewController;
 	Reporter *reporter;
 }
 
 //- (IBAction)setConditions:(id)sender;
+
+- (IBAction)doPushReportDetailView;
 
 @end
 
