@@ -379,9 +379,19 @@
 	switch (section) {
 			case 0: //NAME
 				cell = [self obtainTableTextFieldCellForRow:row];
+				if (row==0) {
+					((CellTextField*)cell).tableView = tableView;
+					((CellTextField*)cell).section = 0;
+					((CellTextField*)cell).row = 0;
+				}
 				break;
 			case 1: //Polling place
 				cell = [self obtainTableTextFieldCellForRow:row];
+				if (row==0) {
+					((CellTextField*)cell).tableView = tableView;
+					((CellTextField*)cell).section = 1;
+					((CellTextField*)cell).row = 0;
+				}			
 				break;
 			case 2: //Wait Time
 				cell = [self obtainTableDisplayCellForRow:row];
@@ -601,6 +611,7 @@
 	} else if (section==4){
 		switch (newIndexPath.row) {
 			case 0:
+				[itableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 				machine = !machine;
 				break;				
 			case 1:
@@ -686,12 +697,12 @@
 	NSLog(@"Polling place=%@",pollingPlace);
 	NSLog(@"Wait time=%@",waitingTime);
 	NSLog(@"Rating=%2.0f",rating);
-	NSLog(@"Machine=%s",machine?@"YES":@"NO");
-	NSLog(@"Registration=%s",registration?@"YES":@"NO");
-	NSLog(@"Challenges=%s",challenges?@"YES":@"NO");
-	NSLog(@"Hava=%s",hava?@"YES":@"NO");
-	NSLog(@"Ballots=%s",ballots?@"YES":@"NO");
-	NSLog(@"Comment=%s",comment);
+	NSLog(@"Machine=%s",machine?"YES":"NO");
+	NSLog(@"Registration=%s",registration?"YES":"NO");
+	NSLog(@"Challenges=%s",challenges?"YES":"NO");
+	NSLog(@"Hava=%s",hava?"YES":"NO");
+	NSLog(@"Ballots=%s",ballots?"YES":"NO");
+	NSLog(@"Comment=%@",comment);
 	
 	
 		

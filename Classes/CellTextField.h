@@ -55,8 +55,15 @@ extern NSString *kCellTextField_ID;
 @interface CellTextField : EditableTableViewCell <UITextFieldDelegate>
 {
     UITextField *view;
+	UITableView *tableView;
+	NSInteger row;
+	NSInteger section;
 }
 
 @property (nonatomic, retain) UITextField *view;
+@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, assign) NSInteger row;
+@property (nonatomic, assign) NSInteger section;
+
 
 @end

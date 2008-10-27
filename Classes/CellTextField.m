@@ -56,6 +56,9 @@ NSString *kCellTextField_ID = @"CellTextField_ID";
 @implementation CellTextField
 
 @synthesize view;
+@synthesize tableView;
+@synthesize row;
+@synthesize section;
 
 - (id)initWithFrame:(CGRect)aRect reuseIdentifier:(NSString *)identifier
 {
@@ -119,6 +122,9 @@ NSString *kCellTextField_ID = @"CellTextField_ID";
     // Update internal state.
     if (beginEditing)
 		self.isInlineEditing = YES;
+	
+	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+	
     return beginEditing;
 }
 
