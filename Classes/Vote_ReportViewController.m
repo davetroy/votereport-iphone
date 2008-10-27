@@ -7,6 +7,7 @@
 //
 
 #import "Vote_ReportViewController.h"
+#import "Vote_ReportAppDelegate.h"
 
 @implementation Vote_ReportViewController
 
@@ -47,6 +48,10 @@
 	textField.autocorrectionType = UITextAutocorrectionTypeNo;
 	textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
 	textField.delegate = self;
+	
+	//Get the credit text size right.
+	creditTextView.font = [UIFont fontWithName:@"Arial" size:16];
+
 }
 
 // We must be getting notified of a location name update - it's all we Observe for
@@ -76,6 +81,26 @@
 - (IBAction) doPushReportDetailView{
 	[self presentModalViewController:vote_ReportDetailViewController animated:YES];
 }
+
+- (IBAction)flipCredit{
+	UIWindow *window = ((Vote_ReportAppDelegate *)[[UIApplication sharedApplication] delegate]).window;
+	
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.7];
+	[UIView setAnimationTransition: ([self.view superview] ? UIViewAnimationTransitionFlipFromLeft : UIViewAnimationTransitionFlipFromRight) forView:window cache:YES];
+	
+	if ([self.view superview]){
+		[self.view removeFromSuperview];
+		[window addSubview:creditView];
+	} else {
+		[creditView removeFromSuperview];
+		[window addSubview:self.view];
+	}
+	
+	[UIView commitAnimations];
+    
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
