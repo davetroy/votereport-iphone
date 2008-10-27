@@ -10,21 +10,6 @@
 
 @implementation Vote_ReportViewController
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-	printf("did begin editing textfield\n");
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-	printf("should end\n");
-	return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
-	printf("should return\n");
-	[theTextField resignFirstResponder];
-	return YES;
-}
-
 - (void)viewDidLoad {
 	printf("view did load\n");
 	reporter = [[Reporter alloc] init];

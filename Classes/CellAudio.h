@@ -1,10 +1,19 @@
+//
+//  CellAudio.h
+//  Vote Report
+//
+//  Created by David Troy on 10/27/08.
+//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
 #import "AudioQueueObject.h"
 #import "AudioRecorder.h"
 #import "AudioPlayer.h"
-#import "HTTPManager.h"
 
-@interface AudioViewController : UIViewController {
+extern NSString *kCellAudio_ID;
 
+@interface CellAudio : UITableViewCell {
 	AudioRecorder				*audioRecorder;
 	AudioPlayer					*audioPlayer;
 	NSURL						*soundFileURL;
@@ -13,24 +22,22 @@
 	NSTimer						*bargraphTimer;
 	Float32						*audioLevels;
 	Float32						*peakLevels;
-	IBOutlet CALayer			*levelMeter;
-	IBOutlet CALayer			*peakLevelMeter;
-
+	CALayer			*levelMeter;
+	CALayer			*peakLevelMeter;
+	
 	UIColor						*peakClear;
 	UIColor						*peakGray;
 	UIColor						*peakOrange;
 	UIColor						*peakRed;
-
-	IBOutlet UITextField		*statusSign;
-
-	IBOutlet UIBarButtonItem	*recordButton;
-	IBOutlet UIBarButtonItem	*playButton;
+	
+	UITextField		*statusSign;
+	
+	UIButton	*recordButton;
+	UIButton	*playButton;
 	
 	BOOL						interruptedOnPlayback;
-	HTTPManager					*httpRequest;
 }
 
-@property (nonatomic, retain)	HTTPManager					*httpRequest;
 @property (nonatomic, retain)	AudioRecorder				*audioRecorder;
 @property (nonatomic, retain)	AudioPlayer					*audioPlayer;
 @property (nonatomic, retain)	NSURL						*soundFileURL;
@@ -41,15 +48,15 @@
 @property (readwrite)			Float32						*peakLevels;
 @property (nonatomic, retain)	CALayer						*levelMeter;
 @property (nonatomic, retain)	CALayer						*peakLevelMeter;
-@property (nonatomic, retain)	IBOutlet UITextField		*statusSign;
+@property (nonatomic, retain)	UITextField		*statusSign;
 
 @property (nonatomic, retain)	UIColor						*peakClear;
 @property (nonatomic, retain)	UIColor						*peakGray;
 @property (nonatomic, retain)	UIColor						*peakOrange;
 @property (nonatomic, retain)	UIColor						*peakRed;
 
-@property (nonatomic, retain)	IBOutlet UIBarButtonItem	*recordButton;
-@property (nonatomic, retain)	IBOutlet UIBarButtonItem	*playButton; 
+@property (nonatomic, retain)	UIButton	*recordButton;
+@property (nonatomic, retain)	UIButton	*playButton; 
 
 @property (readwrite)			BOOL						interruptedOnPlayback;
 
@@ -61,5 +68,6 @@
 - (IBAction) playOrStop: (id) sender;
 - (void) pausePlayback;
 - (void) resumePlayback;
+
 
 @end

@@ -6,6 +6,7 @@
 #import "CellButton.h"
 #import "CellPicker.h"
 #import "CellSlider.h"
+#import "CellAudio.h"
 #import "SourceCell.h"
 #import "Constants.h"
 
@@ -88,8 +89,16 @@
 - (UIButton *)createUIButton
 {
 	UIButton *returnButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[returnButton setTitle:@"Submit" forState:UIControlStateNormal];
+	[returnButton setTitle:@"Submit Report" forState:UIControlStateNormal];
 	[returnButton addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
+	
+//	UIImage *buttonBackground = [UIImage imageNamed:@"whiteButton.png"];
+//	UIImage *newImage = [buttonBackground stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+//	[returnButton setBackgroundImage:newImage forState:UIControlStateNormal];
+//	
+//	buttonBackground = [UIImage imageNamed:@"blueButton.png"];
+//	newImage = [buttonBackground stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+//	[returnButton setBackgroundImage:newImage forState:UIControlStateSelected];
 	
 	
 	return returnButton;
@@ -178,7 +187,7 @@
 {
 	// finish typing text/dismiss the keyboard by removing it as the first responder
 	//
-	UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:5]];
+	UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:6]];
 	
 	[((CellTextView *)cell).view resignFirstResponder];
 	titleBarItem.rightBarButtonItem = nil;	// this will remove the "save" button
@@ -191,7 +200,6 @@
 //
 ///////////////////////////////////////////////////////////
 
-// This table will always only have one section.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tv {
     return 9; 
 }
@@ -200,7 +208,9 @@
 {
 	CGFloat result;
 
-	if (indexPath.section==5 && indexPath.row==0) result = kUITextViewCellRowHeight;
+	if (indexPath.section==5 && indexPath.row==0) result = kUIAudioCellRowHeight;
+	else if (indexPath.section==6 && indexPath.row==0) result = kUITextViewCellRowHeight;
+	else if (indexPath.section==3 && indexPath.row==0) result = kUISliderCellRowHeight;
 	else if (indexPath.section!=4 && indexPath.row==1) result = kUIRowLabelHeight;
 	else result = kUIRowHeight;
 	
@@ -227,10 +237,13 @@
 		case 4: //Other Problems
 			num=5;
 			break;
-		case 5: //Comments
+		case 5: //Audio Report
 			num=2;
 			break;
-		case 6: //Submit
+		case 6: //Comments
+			num=2;
+			break;
+		case 7: //Submit
 			num=1;
 			break;
 		default:
@@ -325,7 +338,26 @@
 		cell = [[[CellButton alloc] initWithFrame:CGRectZero reuseIdentifier:kCellButton_ID] autorelease];
 	}
 	
+	return cell;
+}
+
+
+- (UITableViewCell *)obtainTableAudioCellForRow:(NSInteger)row
+{
+	UITableViewCell *cell = nil;
 	
+	if (row == 0)
+		cell = [tableView dequeueReusableCellWithIdentifier:kCellAudio_ID];
+	else if (row == 1)
+		cell = [tableView dequeueReusableCellWithIdentifier:kSourceCell_ID];
+	
+	if (cell == nil)
+	{
+		if (row == 0)
+			cell = [[[CellAudio alloc] initWithFrame:CGRectZero reuseIdentifier:kCellAudio_ID] autorelease];
+		else if (row == 1)
+			cell = [[[SourceCell alloc] initWithFrame:CGRectZero reuseIdentifier:kSourceCell_ID] autorelease];
+	}
 	
 	return cell;
 }
@@ -402,10 +434,13 @@
 			case 4: //Other Problems
 				cell = [self obtainTableSwitchCellForRow:row];
 				break;
-			case 5: //Comments
+			case 5: //Audio Report
+				cell = [self obtainTableAudioCellForRow:row];
+				break;
+			case 6: //Comments
 				cell = [self obtainTableTextViewCellForRow:row];
 				break;
-			case 6: //Submit
+			case 7: //Submit
 				cell = [self obtainTableButtonCellForRow:row];
 				break;
 			default:
@@ -469,7 +504,7 @@
 			else
 			{
 				// this cell hosts the info on where to find the code
-				((SourceCell *)sourceCell).sourceLabel.text = @"Please enter your overall rating. (0-bad, 100-good)";
+				((SourceCell *)sourceCell).sourceLabel.text = @"Please rate this polling place. (0-bad, 100-good)";
 			}
 			break;
 		case 4: //Other Problems
@@ -484,7 +519,11 @@
 			else if (row == 4)		
 				((DisplayCell *)sourceCell).nameLabel.text = @"Out or running out of paper ballots";
 			break;
-		case 5: //Comments
+		case 5: //Audio Report
+			if (row == 1)
+				((SourceCell *)sourceCell).sourceLabel.text = @"You may record an optional audio message.";
+			break;				
+		case 6: //Comments
 			if (row == 0)
 			{
 				// this cell hosts the UISwitch control
@@ -496,7 +535,7 @@
 				((SourceCell *)sourceCell).sourceLabel.text = @"Please enter any other comments.";
 			}
 			break;
-		case 6: //Submit
+		case 7: //Submit
 			((CellButton *)sourceCell).view = [self createUIButton];
 			break;
 		default:
@@ -526,10 +565,13 @@
 		case 4: //Other Problems
 			title=@"Other Problems";
 			break;
-		case 5: //Comments
+		case 5: //Audio Report
+			title=@"Audio Report";
+			break;
+		case 6: //Comments
 			title=@"Comments";
 			break;
-		case 6: //Submit
+		case 7: //Submit
 			title=nil;
 			break;
 		default:
@@ -590,12 +632,12 @@
  }
  */
 
-/*
  - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
- {
- return nil;	
- }
- */
+{
+	// only allow selection of a couple of the rows
+	if (indexPath.section==2 || indexPath.section==4) return indexPath; 
+	return nil;
+}
 
 
 - (void)tableView:(UITableView *)itableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath {
@@ -703,8 +745,6 @@
 	NSLog(@"Hava=%s",hava?"YES":"NO");
 	NSLog(@"Ballots=%s",ballots?"YES":"NO");
 	NSLog(@"Comment=%@",comment);
-	
-	
 		
 	[self dismissModalViewControllerAnimated:YES];
 }

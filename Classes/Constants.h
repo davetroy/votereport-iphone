@@ -90,4 +90,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #define kCellSwitch_ID		@"cell_switch"
 
 #define kUITextViewCellRowHeight 150.0
+#define kUIAudioCellRowHeight 90.0
+#define kUISliderCellRowHeight	 60.0
 

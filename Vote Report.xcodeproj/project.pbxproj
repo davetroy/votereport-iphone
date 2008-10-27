@@ -13,7 +13,6 @@
 		056295C10EB56C8100040599 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 056295BA0EB56C8100040599 /* AudioPlayer.m */; };
 		056295C20EB56C8100040599 /* AudioQueueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 056295BC0EB56C8100040599 /* AudioQueueObject.m */; };
 		056295C30EB56C8100040599 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 056295BE0EB56C8100040599 /* AudioRecorder.m */; };
-		056295C40EB56C8100040599 /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056295C00EB56C8100040599 /* AudioViewController.m */; };
 		056296180EB60D1F00040599 /* CellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296040EB60D1F00040599 /* CellButton.m */; };
 		056296190EB60D1F00040599 /* CellPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296060EB60D1F00040599 /* CellPicker.m */; };
 		0562961A0EB60D1F00040599 /* CellSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296080EB60D1F00040599 /* CellSlider.m */; };
@@ -26,6 +25,9 @@
 		056296210EB60D1F00040599 /* Vote_ReportDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296170EB60D1F00040599 /* Vote_ReportDetailViewController.m */; };
 		056296390EB6107700040599 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056296380EB6107700040599 /* AudioToolbox.framework */; };
 		0562963D0EB6108200040599 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0562963C0EB6108200040599 /* QuartzCore.framework */; };
+		056296BD0EB61F9500040599 /* CellAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296BC0EB61F9500040599 /* CellAudio.m */; };
+		0562979E0EB632E300040599 /* soundbar_mono.png in Resources */ = {isa = PBXBuildFile; fileRef = 0562979D0EB632E300040599 /* soundbar_mono.png */; };
+		056298190EB6407800040599 /* soundbar_plate_mono.png in Resources */ = {isa = PBXBuildFile; fileRef = 056298180EB6407800040599 /* soundbar_plate_mono.png */; };
 		0572E8930EB4DA5600F73990 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572E8920EB4DA5600F73990 /* icon.png */; };
 		0572E89D0EB4DBA400F73990 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572E89C0EB4DBA400F73990 /* background.png */; };
 		0572E89F0EB4DBAA00F73990 /* logo_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572E89E0EB4DBAA00F73990 /* logo_splash.png */; };
@@ -55,8 +57,6 @@
 		056295BC0EB56C8100040599 /* AudioQueueObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioQueueObject.m; sourceTree = "<group>"; };
 		056295BD0EB56C8100040599 /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
 		056295BE0EB56C8100040599 /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
-		056295BF0EB56C8100040599 /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioViewController.h; sourceTree = "<group>"; };
-		056295C00EB56C8100040599 /* AudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioViewController.m; sourceTree = "<group>"; };
 		056296030EB60D1F00040599 /* CellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellButton.h; sourceTree = "<group>"; };
 		056296040EB60D1F00040599 /* CellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellButton.m; sourceTree = "<group>"; };
 		056296050EB60D1F00040599 /* CellPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellPicker.h; sourceTree = "<group>"; };
@@ -80,6 +80,10 @@
 		056296170EB60D1F00040599 /* Vote_ReportDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vote_ReportDetailViewController.m; sourceTree = "<group>"; };
 		056296380EB6107700040599 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0562963C0EB6108200040599 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		056296BB0EB61F9500040599 /* CellAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellAudio.h; sourceTree = "<group>"; };
+		056296BC0EB61F9500040599 /* CellAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellAudio.m; sourceTree = "<group>"; };
+		0562979D0EB632E300040599 /* soundbar_mono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundbar_mono.png; sourceTree = "<group>"; };
+		056298180EB6407800040599 /* soundbar_plate_mono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundbar_plate_mono.png; sourceTree = "<group>"; };
 		0572E8920EB4DA5600F73990 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0572E89C0EB4DBA400F73990 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		0572E89E0EB4DBAA00F73990 /* logo_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_splash.png; sourceTree = "<group>"; };
@@ -154,8 +158,6 @@
 				056295BC0EB56C8100040599 /* AudioQueueObject.m */,
 				056295BD0EB56C8100040599 /* AudioRecorder.h */,
 				056295BE0EB56C8100040599 /* AudioRecorder.m */,
-				056295BF0EB56C8100040599 /* AudioViewController.h */,
-				056295C00EB56C8100040599 /* AudioViewController.m */,
 				058FD7DA0EB21C16000E2324 /* HTTPManager.h */,
 				058FD7DB0EB21C16000E2324 /* HTTPManager.m */,
 				1D3623240D0F684500981E51 /* Vote_ReportAppDelegate.h */,
@@ -164,6 +166,8 @@
 				28D7ACF70DDB3853001CB0EB /* Vote_ReportViewController.m */,
 				058FD7EE0EB2643B000E2324 /* Reporter.h */,
 				058FD7EF0EB2643B000E2324 /* Reporter.m */,
+				056296BB0EB61F9500040599 /* CellAudio.h */,
+				056296BC0EB61F9500040599 /* CellAudio.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -200,6 +204,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				056298180EB6407800040599 /* soundbar_plate_mono.png */,
+				0562979D0EB632E300040599 /* soundbar_mono.png */,
 				056295440EB5565C00040599 /* greenslide.png */,
 				056295450EB5565C00040599 /* redslide.png */,
 				056295460EB5565C00040599 /* slider_ball.png */,
@@ -283,6 +289,8 @@
 				056295470EB5565C00040599 /* greenslide.png in Resources */,
 				056295480EB5565C00040599 /* redslide.png in Resources */,
 				056295490EB5565C00040599 /* slider_ball.png in Resources */,
+				0562979E0EB632E300040599 /* soundbar_mono.png in Resources */,
+				056298190EB6407800040599 /* soundbar_plate_mono.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +309,6 @@
 				056295C10EB56C8100040599 /* AudioPlayer.m in Sources */,
 				056295C20EB56C8100040599 /* AudioQueueObject.m in Sources */,
 				056295C30EB56C8100040599 /* AudioRecorder.m in Sources */,
-				056295C40EB56C8100040599 /* AudioViewController.m in Sources */,
 				056296180EB60D1F00040599 /* CellButton.m in Sources */,
 				056296190EB60D1F00040599 /* CellPicker.m in Sources */,
 				0562961A0EB60D1F00040599 /* CellSlider.m in Sources */,
@@ -312,6 +319,7 @@
 				0562961F0EB60D1F00040599 /* EditableTableViewCell.m in Sources */,
 				056296200EB60D1F00040599 /* SourceCell.m in Sources */,
 				056296210EB60D1F00040599 /* Vote_ReportDetailViewController.m in Sources */,
+				056296BD0EB61F9500040599 /* CellAudio.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,7 +48,7 @@ NSString *kCellSlider_ID = @"CellSlider_ID";
 								contentRect.size.height/2);
 	
 	CGRect sliderFrame = CGRectMake(	contentRect.origin.x + kCellLeftOffset,
-								   contentRect.origin.y + contentRect.size.height/2,
+								   contentRect.origin.y + 25,
 								   contentRect.size.width - (kCellLeftOffset*2.0),
 								   contentRect.size.height/2);
 	label.frame = labelFrame;
