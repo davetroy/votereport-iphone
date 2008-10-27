@@ -89,3 +89,5 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #define kDisplayCell_ID		@"cell_display"
 #define kCellSwitch_ID		@"cell_switch"
 
+#define kUITextViewCellRowHeight 150.0
+

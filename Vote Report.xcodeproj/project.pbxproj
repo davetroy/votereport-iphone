@@ -28,6 +28,7 @@
 		51DE48FB0EB59EE7007C8A81 /* redslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DE48FA0EB59EE7007C8A81 /* redslide.png */; };
 		51DE48FD0EB59EF0007C8A81 /* greenslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DE48FC0EB59EF0007C8A81 /* greenslide.png */; };
 		51DE49010EB59F86007C8A81 /* CellSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DE48FF0EB59F86007C8A81 /* CellSlider.m */; };
+		51DE4A320EB5AE81007C8A81 /* DisplayCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DE4A300EB5AE81007C8A81 /* DisplayCell2.m */; };
 		51F4EF840EB5816F00326D9C /* CellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F4EF7F0EB5816F00326D9C /* CellButton.m */; };
 		51F4EF850EB5816F00326D9C /* CellTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F4EF810EB5816F00326D9C /* CellTextField.m */; };
 		51F4EF860EB5816F00326D9C /* CellTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F4EF830EB5816F00326D9C /* CellTextView.m */; };
@@ -70,6 +71,8 @@
 		51DE48FC0EB59EF0007C8A81 /* greenslide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenslide.png; sourceTree = "<group>"; };
 		51DE48FF0EB59F86007C8A81 /* CellSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CellSlider.m; path = Classes/CellSlider.m; sourceTree = "<group>"; };
 		51DE49000EB59F86007C8A81 /* CellSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellSlider.h; path = Classes/CellSlider.h; sourceTree = "<group>"; };
+		51DE4A300EB5AE81007C8A81 /* DisplayCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DisplayCell2.m; path = Classes/DisplayCell2.m; sourceTree = "<group>"; };
+		51DE4A310EB5AE81007C8A81 /* DisplayCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayCell2.h; path = Classes/DisplayCell2.h; sourceTree = "<group>"; };
 		51F4EF7E0EB5816F00326D9C /* CellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellButton.h; path = Classes/CellButton.h; sourceTree = "<group>"; };
 		51F4EF7F0EB5816F00326D9C /* CellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CellButton.m; path = Classes/CellButton.m; sourceTree = "<group>"; };
 		51F4EF800EB5816F00326D9C /* CellTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellTextField.h; path = Classes/CellTextField.h; sourceTree = "<group>"; };
@@ -187,6 +190,8 @@
 		515639C60EB56305008654D0 /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
+				51DE4A300EB5AE81007C8A81 /* DisplayCell2.m */,
+				51DE4A310EB5AE81007C8A81 /* DisplayCell2.h */,
 				51DE48FF0EB59F86007C8A81 /* CellSlider.m */,
 				51DE49000EB59F86007C8A81 /* CellSlider.h */,
 				51F4F0080EB58CF200326D9C /* CellPicker.h */,
@@ -284,6 +289,7 @@
 				51F4EF920EB581A000326D9C /* Vote_ReportDetailViewController.m in Sources */,
 				51F4F00A0EB58CF200326D9C /* CellPicker.m in Sources */,
 				51DE49010EB59F86007C8A81 /* CellSlider.m in Sources */,
+				51DE4A320EB5AE81007C8A81 /* DisplayCell2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

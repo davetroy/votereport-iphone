@@ -1,5 +1,6 @@
 #import "Vote_ReportDetailViewController.h"
 #import "DisplayCell.h"
+#import "DisplayCell2.h"
 #import "CellTextView.h"
 #import "CellTextField.h"
 #import "CellButton.h"
@@ -72,9 +73,8 @@
     textView.delegate = self;
     textView.backgroundColor = [UIColor whiteColor];
 	
-	textView.text = @"Now is the time for all good developers to come to serve their country.\n\nNow is the time for all good developers to come to serve their country.";
-	textView.returnKeyType = UIReturnKeyDefault;
 	textView.keyboardType = UIKeyboardTypeDefault;	// use the default type input method (entire keyboard)
+	
 	
 	// note: for UITextView, if you don't like autocompletion while typing use:
 	// myTextView.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -89,6 +89,7 @@
 {
 	UIButton *returnButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[returnButton setTitle:@"Submit" forState:UIControlStateNormal];
+	[returnButton addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
 	
 	
 	return returnButton;
@@ -146,6 +147,8 @@
 	pollingPlaceTextField = [[self createTextField_Rounded] retain];
 	ratingSlider = [[self create_UISlider] retain];
 	waitingTime = @"Select Wait time";
+	titleBarItem.title = @"Polling Place";
+	commentTextView = [[self create_UITextView] retain];
 	pickerViewArray = [[NSArray arrayWithObjects:
 						@"No Wait Time",
 						@"Less Than 5 Minutes",
@@ -159,6 +162,28 @@
 	
 }
 
+#pragma mark UITextView delegate methods
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+	// provide my own Save button to dismiss the keyboard
+	UIBarButtonItem* saveItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+																			  target:self action:@selector(saveAction:)];
+	titleBarItem.rightBarButtonItem = saveItem;
+	[saveItem release];
+	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:5] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+- (void)saveAction:(id)sender
+{
+	// finish typing text/dismiss the keyboard by removing it as the first responder
+	//
+	UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:5]];
+	
+	[((CellTextView *)cell).view resignFirstResponder];
+	titleBarItem.rightBarButtonItem = nil;	// this will remove the "save" button
+}
+
 
 ////////////////////////////////////////////////////////////
 // UITableViewDataSource Implementation
@@ -168,8 +193,20 @@
 
 // This table will always only have one section.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tv {
-    return 7; 
+    return 9; 
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	CGFloat result;
+
+	if (indexPath.section==5 && indexPath.row==0) result = kUITextViewCellRowHeight;
+	else if (indexPath.section!=4 && indexPath.row==1) result = kUIRowLabelHeight;
+	else result = kUIRowHeight;
+	
+	return result;
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
@@ -248,11 +285,11 @@
 {
 	UITableViewCell *cell = nil;
 	
-	cell = [tableView dequeueReusableCellWithIdentifier:kCellSwitch_ID];
+	cell = [tableView dequeueReusableCellWithIdentifier:kDisplayCell2_ID];
 	
 	if (cell == nil)
 	{
-		cell = [[[CellTextField alloc] initWithFrame:CGRectZero reuseIdentifier:kCellSwitch_ID] autorelease];
+		cell = [[[DisplayCell2 alloc] initWithFrame:CGRectZero reuseIdentifier:kDisplayCell2_ID] autorelease];
 	}
 	
 	return cell;
@@ -426,13 +463,22 @@
 			}
 			break;
 		case 4: //Other Problems
-				((CellTextField *)sourceCell).view = [self createTextField_Rounded];
+			if (row == 0)
+				((DisplayCell *)sourceCell).nameLabel.text = @"Problem with voting machine(s)";
+			else if (row == 1)		
+				((DisplayCell *)sourceCell).nameLabel.text = @"Problems with the registration process";
+			else if (row == 2)		
+				((DisplayCell *)sourceCell).nameLabel.text = @"Widespread challenges at location";
+			else if (row == 3)		
+				((DisplayCell *)sourceCell).nameLabel.text = @"Accessibility issues";
+			else if (row == 4)		
+				((DisplayCell *)sourceCell).nameLabel.text = @"Out or running out of paper ballots";
 			break;
 		case 5: //Comments
 			if (row == 0)
 			{
 				// this cell hosts the UISwitch control
-				((CellTextView *)sourceCell).view = [self create_UITextView];
+				((CellTextView *)sourceCell).view = commentTextView;
 			}
 			else
 			{
@@ -452,7 +498,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	NSString *title;
+	NSString *title=nil;
 	
 	switch (section) {
 		case 0: //NAME
@@ -494,10 +540,33 @@
  */
 
 - (UITableViewCellAccessoryType)tableView:(UITableView *)tv accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section==4){ //Other Problems
+		switch (indexPath.row) {
+			case 0:
+				if (machine) return UITableViewCellAccessoryCheckmark;
+				break;				
+			case 1:
+				if (registration) return UITableViewCellAccessoryCheckmark;
+				break;				
+			case 2:
+				if (challenges) return UITableViewCellAccessoryCheckmark;
+				break;				
+			case 3:
+				if (hava) return UITableViewCellAccessoryCheckmark;
+				break;				
+			case 4:
+				if (ballots) return UITableViewCellAccessoryCheckmark;
+				break;				
+			default:
+				break;
+		}
+	}
+	
     return UITableViewCellAccessoryNone;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+
 	return UITableViewCellEditingStyleNone;
 }
 
@@ -525,10 +594,31 @@
 	
 	if (section==2){
 		[itableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-		[self.view bringSubviewToFront:pickerView];
-		pickerView.hidden = NO;
+		[self.view bringSubviewToFront:pickerViewWithButton];
+		pickerViewWithButton.hidden = NO;
 		
 		//[self presentModalViewController:pickerViewController animated:YES];
+	} else if (section==4){
+		switch (newIndexPath.row) {
+			case 0:
+				machine = !machine;
+				break;				
+			case 1:
+				registration = !registration;
+				break;				
+			case 2:
+				challenges = !challenges;
+				break;				
+			case 3:
+				hava = !hava;
+				break;				
+			case 4:
+				ballots = !ballots;
+				break;				
+			default:
+				break;
+		}
+		[tableView reloadData];
 	}
 }
 
@@ -542,7 +632,7 @@
 - (void)pickerView:(UIPickerView *)ipickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
 	waitingTime = [pickerViewArray objectAtIndex:row];
-	ipickerView.hidden = YES;
+	//ipickerView.hidden = YES;
 	[tableView reloadData];
 }
 
@@ -580,6 +670,34 @@
 	return 1;
 }
 
+- (IBAction)donePicker{
+	pickerViewWithButton.hidden = YES;	
+}
+
+- (void)submit:(id)sender
+{
+	NSLog(@"Submit was clicked");
+	NSString *name = nameTextField.text;
+	NSString *pollingPlace = pollingPlaceTextField.text;
+	double rating  = ratingSlider.value;
+	NSString *comment = commentTextView.text;
+	
+	NSLog(@"Name=%@",name);
+	NSLog(@"Polling place=%@",pollingPlace);
+	NSLog(@"Wait time=%@",waitingTime);
+	NSLog(@"Rating=%2.0f",rating);
+	NSLog(@"Machine=%s",machine?@"YES":@"NO");
+	NSLog(@"Registration=%s",registration?@"YES":@"NO");
+	NSLog(@"Challenges=%s",challenges?@"YES":@"NO");
+	NSLog(@"Hava=%s",hava?@"YES":@"NO");
+	NSLog(@"Ballots=%s",ballots?@"YES":@"NO");
+	NSLog(@"Comment=%s",comment);
+	
+	
+		
+	[self dismissModalViewControllerAnimated:YES];
+}
+
 
 - (void)dealloc {
     [super dealloc];
@@ -588,6 +706,7 @@
 	[ratingSlider release];
 	[ratingSliderCell release];
 	[waitingTime release];
+	[commentTextView release];
 }
 
 @end
