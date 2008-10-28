@@ -49,7 +49,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #include <AudioToolbox/AudioToolbox.h>
 #import "AudioQueueObject.h"
 #import "AudioPlayer.h"
-#import "AudioViewController.h"
+#import "CellAudio.h"
 
 
 static void playbackCallback (

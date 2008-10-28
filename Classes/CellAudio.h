@@ -36,6 +36,7 @@ extern NSString *kCellAudio_ID;
 	UIButton	*playButton;
 	
 	BOOL						interruptedOnPlayback;
+	BOOL		didRecording;
 }
 
 @property (nonatomic, retain)	AudioRecorder				*audioRecorder;
@@ -59,6 +60,7 @@ extern NSString *kCellAudio_ID;
 @property (nonatomic, retain)	UIButton	*playButton; 
 
 @property (readwrite)			BOOL						interruptedOnPlayback;
+@property (readonly)			BOOL						didRecording;
 
 - (void) addBargraphToView: (UIView *) parentView;
 - (void) updateUserInterfaceOnAudioQueueStateChange: (AudioQueueObject *) inQueue;

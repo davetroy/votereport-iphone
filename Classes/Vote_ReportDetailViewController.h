@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "CellSlider.h"
+#import "CellAudio.h"
 
 @interface Vote_ReportDetailViewController : UIViewController <UITextViewDelegate,UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate>
 {
@@ -16,6 +17,7 @@
 	UITextField  *pollingPlaceTextField;
 	UISlider     *ratingSlider;
 	CellSlider	 *ratingSliderCell;
+	CellAudio	 *messageAudioCell;
 	UITextView   *commentTextView;
 	
 	//DataField

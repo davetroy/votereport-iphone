@@ -67,6 +67,7 @@ NSString *kCellAudio_ID = @"CellAudio_ID";
 @synthesize peakLevels;				// an array of two floating point values that represents the current recording or playback audio level
 @synthesize statusSign;				// a UILabel object that says "Recording" or "Playback," or empty when stopped
 @synthesize interruptedOnPlayback;	// this allows playback to resume when an interruption ends. this app does not resume a recording for the user.
+@synthesize didRecording;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
@@ -121,7 +122,7 @@ NSString *kCellAudio_ID = @"CellAudio_ID";
 
 		recordButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		[recordButton setTitle:@"Record" forState:UIControlStateNormal];
-		recordButton.frame = CGRectMake(210, 55, 70, 30);
+		recordButton.frame = CGRectMake(210, 50, 70, 30);
 		[recordButton addTarget:self action:@selector(recordOrStop:) forControlEvents:UIControlEventTouchUpInside];
 		[self.contentView addSubview:recordButton];
 		
@@ -205,7 +206,7 @@ NSString *kCellAudio_ID = @"CellAudio_ID";
 			
 			// recording just started
 		} else if (inQueue == self.audioRecorder) {
-			
+			didRecording = YES;
 			NSLog (@"recording just started.");
 			[self.playButton setEnabled: NO];
 			NSLog (@"setting Record button title to Stop.");

@@ -9,7 +9,7 @@
 #import "CellAudio.h"
 #import "SourceCell.h"
 #import "Constants.h"
-
+#import "Vote_ReportViewController.h"
 
 @implementation Vote_ReportDetailViewController
 
@@ -180,7 +180,7 @@
 																			  target:self action:@selector(saveAction:)];
 	titleBarItem.rightBarButtonItem = saveItem;
 	[saveItem release];
-	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:5] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:6] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void)saveAction:(id)sender
@@ -354,7 +354,10 @@
 	if (cell == nil)
 	{
 		if (row == 0)
+		{
 			cell = [[[CellAudio alloc] initWithFrame:CGRectZero reuseIdentifier:kCellAudio_ID] autorelease];
+			messageAudioCell = [cell retain];
+		}
 		else if (row == 1)
 			cell = [[[SourceCell alloc] initWithFrame:CGRectZero reuseIdentifier:kSourceCell_ID] autorelease];
 	}
@@ -396,7 +399,7 @@
 		{
 			cell = [[[CellSlider alloc] initWithFrame:CGRectZero reuseIdentifier:kCellSlider_ID] autorelease];
 			ratingSliderCell = [cell retain];
-			
+
 		}
 		else if (row == 1)
 			cell = [[[SourceCell alloc] initWithFrame:CGRectZero reuseIdentifier:kSourceCell_ID] autorelease];
@@ -468,7 +471,7 @@
 			else
 			{
 				// this cell hosts the info on where to find the code
-				((SourceCell *)sourceCell).sourceLabel.text = @"Please enter your name.";
+				((SourceCell *)sourceCell).sourceLabel.text = @"Please enter your name, email or Twitter ID.";
 			}
 			break;
 		case 1: //Polling place
@@ -551,7 +554,7 @@
 	
 	switch (section) {
 		case 0: //NAME
-			title = @"Your Name";
+			title = @"About You";
 			break;
 		case 1: //Polling place
 			title = @"Polling Place";
@@ -732,32 +735,41 @@
 	NSLog(@"Submit was clicked");
 	NSString *name = nameTextField.text;
 	NSString *pollingPlace = pollingPlaceTextField.text;
-	double rating  = ratingSlider.value;
+	NSString *rating  = [NSString stringWithFormat:@"%.0f", ratingSlider.value];
 	NSString *comment = commentTextView.text;
+	NSString *soundfile = [messageAudioCell.soundFileURL path];
 	
-	NSLog(@"Name=%@",name);
-	NSLog(@"Polling place=%@",pollingPlace);
-	NSLog(@"Wait time=%@",waitingTime);
-	NSLog(@"Rating=%2.0f",rating);
-	NSLog(@"Machine=%s",machine?"YES":"NO");
-	NSLog(@"Registration=%s",registration?"YES":"NO");
-	NSLog(@"Challenges=%s",challenges?"YES":"NO");
-	NSLog(@"Hava=%s",hava?"YES":"NO");
-	NSLog(@"Ballots=%s",ballots?"YES":"NO");
-	NSLog(@"Comment=%@",comment);
+	NSString *tags = [[NSMutableString alloc] init];
+	if (machine) [tags stringByAppendingString:@"#machine "];
+	if (registration) [tags stringByAppendingString:@"#registration "];
+	if (challenges) [tags stringByAppendingString:@"#challenges "];
+	if (hava) [tags stringByAppendingString:@"#hava "];
+	if (ballots) [tags stringByAppendingString:@"#ballots"];
+	
+	NSDictionary *params = [[NSMutableDictionary alloc] init];
+	if (name) [params setValue:name forKey:@"reporter[name]"];
+	if (pollingPlace) [params setValue:pollingPlace forKey:@"polling_place[name]"];
+	if (waitingTime) [params setValue:waitingTime forKey:@"report[wait_time]"];
+	if (rating) [params setValue:rating forKey:@"report[rating]"];
+	if (comment) [params setValue:comment forKey:@"report[text]"];
+	if (tags) [params setValue:tags forKey:@"report[tag_string]"];
+	if (messageAudioCell.didRecording && soundfile) [params setValue:soundfile forKey:@"soundfile"];
+	
+	[(Vote_ReportViewController *)self.parentViewController sendReportWith:params];
 		
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 
 - (void)dealloc {
-    [super dealloc];
+	[messageAudioCell release];
 	[nameTextField release];
 	[pollingPlaceTextField release];
 	[ratingSlider release];
 	[ratingSliderCell release];
 	[waitingTime release];
 	[commentTextView release];
+    [super dealloc];
 }
 
 @end

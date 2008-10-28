@@ -28,20 +28,32 @@
 	return self;
 }
 
--(void)uploadFile:(NSString *)filename toUrl:(NSString *)url
+-(void)uploadFile:(NSString *)filename
+			toUrl:(NSString *)url
+   withParameters:(NSDictionary *)parameters
 {
 	NSString *boundary = [[UIDevice currentDevice] uniqueIdentifier];
 	
 	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
 	[urlRequest setHTTPMethod:@"POST"];
 	[urlRequest setValue: [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
-	
+
+	NSMutableString* params = [[[NSMutableString alloc] init] autorelease];  
+	for (id key in parameters)  
+	{  
+		[params appendFormat:@"--%@\r\n", boundary];
+		[params appendFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key];
+		[params appendString:[parameters objectForKey:key]];
+	}  
+
 	NSData *data = [NSData dataWithContentsOfFile:filename];
-	NSMutableData *postData = [NSMutableData dataWithCapacity:[data length] + 512];
+	NSMutableData *postData = [NSMutableData dataWithCapacity: [data length] + [params length] + 512];
+	[postData appendData: [params dataUsingEncoding:NSUTF8StringEncoding]];
 	[postData appendData: [[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	[postData appendData: [[NSString stringWithFormat: @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n\r\n", filename, @"uploaded"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[postData appendData: [[NSString stringWithFormat: @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n\r\n", @"uploaded", filename] dataUsingEncoding:NSUTF8StringEncoding]];
 	[postData appendData:data];
 	[postData appendData: [[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+
 	[urlRequest setHTTPBody:postData];
 	
 	printf("http upload: %s [POST]\n", [url UTF8String]);

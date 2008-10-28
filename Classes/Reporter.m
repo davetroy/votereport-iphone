@@ -13,6 +13,9 @@
 @implementation Reporter
 @synthesize location;
 @synthesize locationName;
+@synthesize target;
+@synthesize targetSelector;
+@synthesize successful;
 
 -(id)init {
 	if (self = [super init]) {
@@ -83,34 +86,40 @@
 	if ([manager successful]) {
 		self.locationName = [manager getResponseText];  //implied retain
 		printf("location: %s\n", [locationName UTF8String]);
-		
 	}
 	[manager release];
 }
 
--(void)submitReport {
+-(void)postReportWithParams:(NSMutableDictionary *)params {
 	NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
-	printf("submitting report\n");
+
+	[params addEntriesFromDictionary:
+		[NSDictionary dictionaryWithObjectsAndKeys:
+		udid, @"reporter[uniqueid]",
+		locationName, @"reporter[profile_location]",
+		[NSString stringWithFormat:@"%.3f,%.3f:%.0f",
+		 location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy ],
+		@"reporter[latlon]",
+		nil]
+	];
+	
 	HTTPManager *httpRequest = [[HTTPManager alloc] init];
 	httpRequest.target = self;
 	httpRequest.targetSelector = @selector(reportComplete:);
-	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-							@"60", @"report[wait_time]",
-							@"Arnold Elementary", @"polling_place[name]",
-							udid, @"reporter[uniqueid]",
-							@"Fred J", @"reporter[name]",
-							locationName, @"reporter[profile_location]",
-							[NSString stringWithFormat:@"%.3f,%.3f", location.coordinate.latitude, location.coordinate.longitude], @"reporter[latlon]",
-							nil];
-	[httpRequest performRequestWithMethod:@"POST" toUrl:VOTEREPORT_REPORTS_URL withParameters:params];
+	NSString *soundfile = [params valueForKey:@"soundfile"];
+	if (soundfile)
+		[httpRequest uploadFile:soundfile toUrl:VOTEREPORT_REPORTS_URL withParameters:params];
+	else
+		[httpRequest performRequestWithMethod:@"POST" toUrl:VOTEREPORT_REPORTS_URL withParameters:params];
 }	
 
 -(void)reportComplete:(HTTPManager *)manager
 {
-	if ([manager successful])
-		printf("report completed successfully\n");
-	else
-		printf("report failed!\n");
+	successful = manager.successful;
+
+	// Call our target's completion method
+	if (target && [target respondsToSelector:targetSelector])
+		[target performSelector:targetSelector withObject:self];
 }
 
 @end

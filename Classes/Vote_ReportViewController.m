@@ -59,6 +59,29 @@
 	}
 }
 
+-(void)reportSubmitted {
+	if (!reporter.successful) {
+		locationName.text = @"Report Submission Failed";
+		[button setTitle:@"Try Again" forState:UIControlStateNormal|UIControlStateSelected];	
+	}
+	else
+	{
+		locationName.text = @"Report Sent Successfully!";
+		[button setTitle:@"See Other Reports Nearby" forState:UIControlStateNormal|UIControlStateSelected];
+		[button removeTarget:self action:@selector(doPushReportDetailView) forControlEvents:UIControlEventTouchUpInside];
+	}	
+	button.enabled = YES;
+}
+
+-(void) sendReportWith:(NSMutableDictionary *)params {
+	reporter.target = self;
+	reporter.targetSelector = @selector(reportSubmitted);
+	[button setTitle:@"Sending Report..." forState:UIControlStateDisabled];
+	button.enabled = NO;
+	printf("sending report...\n");
+	[reporter postReportWithParams:params];
+}
+
 - (IBAction) doPushReportDetailView{
 	[self presentModalViewController:vote_ReportDetailViewController animated:YES];
 }
@@ -76,6 +99,7 @@
 
 
 - (void)dealloc {
+	[reporter dealloc];
     [super dealloc];
 }
 

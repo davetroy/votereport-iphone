@@ -20,9 +20,8 @@
 	Reporter *reporter;
 }
 
-//- (IBAction)setConditions:(id)sender;
-
 - (IBAction)doPushReportDetailView;
+- (void) sendReportWith:(NSMutableDictionary *)params;
 
 @end
 
