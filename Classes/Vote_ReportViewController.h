@@ -17,11 +17,14 @@
 	IBOutlet UIButton *infoButton;
 	IBOutlet UIImageView *splash;
 	IBOutlet UIViewController *vote_ReportDetailViewController;
+	IBOutlet UIView *creditView;
+	IBOutlet UITextView *creditTextView;
 	Reporter *reporter;
 }
 
 - (IBAction)doPushReportDetailView;
 - (void) sendReportWith:(NSMutableDictionary *)params;
+- (IBAction)flipCredit;
 
 @end
 

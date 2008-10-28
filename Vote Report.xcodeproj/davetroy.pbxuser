@@ -6482,6 +6482,76 @@
 		vrLen = 2473;
 		vrLoc = 369;
 	};
+	0562998F0EB696E100040599 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 058FD7DB0EB21C16000E2324 /* HTTPManager.m */;
+		name = "HTTPManager.m: 55";
+		rLen = 2;
+		rLoc = 1885;
+		rType = 0;
+		vrLen = 2550;
+		vrLoc = 369;
+	};
+	056299900EB696E100040599 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF60DDB3853001CB0EB /* Vote_ReportViewController.h */;
+		name = "Vote_ReportViewController.h: 28";
+		rLen = 0;
+		rLoc = 752;
+		rType = 0;
+		vrLen = 759;
+		vrLoc = 0;
+	};
+	056299910EB696E100040599 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* Vote_ReportViewController.m */;
+		name = "Vote_ReportViewController.m: 61";
+		rLen = 0;
+		rLoc = 2027;
+		rType = 0;
+		vrLen = 1931;
+		vrLoc = 0;
+	};
+	056299920EB696E100040599 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 058FD7DB0EB21C16000E2324 /* HTTPManager.m */;
+		name = "HTTPManager.m: 55";
+		rLen = 2;
+		rLoc = 1885;
+		rType = 0;
+		vrLen = 2550;
+		vrLoc = 369;
+	};
+	056299930EB696E100040599 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* Vote_ReportViewController.m */;
+		name = "Vote_ReportViewController.m: 61";
+		rLen = 0;
+		rLoc = 2027;
+		rType = 0;
+		vrLen = 1931;
+		vrLoc = 0;
+	};
+	056299940EB696E100040599 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF60DDB3853001CB0EB /* Vote_ReportViewController.h */;
+		name = "Vote_ReportViewController.h: 28";
+		rLen = 0;
+		rLoc = 752;
+		rType = 0;
+		vrLen = 759;
+		vrLoc = 0;
+	};
+	056299950EB696E100040599 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* Vote_ReportViewController.m */;
+		name = "Vote_ReportViewController.m: 61";
+		rLen = 0;
+		rLoc = 2027;
+		rType = 0;
+		vrLen = 1639;
+		vrLoc = 2469;
+	};
 	0572E9910EB502C100F73990 /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = 0572E8920EB4DA5600F73990 /* icon.png */;
@@ -6717,7 +6787,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1164, 2058}}";
 			sepNavSelRange = "{1885, 2}";
-			sepNavVisRange = "{369, 2473}";
+			sepNavVisRange = "{369, 2550}";
 		};
 	};
 	058FD7E00EB21C87000E2324 /* PBXTextBookmark */ = {
@@ -6863,16 +6933,16 @@
 	};
 	28D7ACF60DDB3853001CB0EB /* Vote_ReportViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {865, 760}}";
-			sepNavSelRange = "{607, 0}";
-			sepNavVisRange = "{0, 667}";
+			sepNavIntBoundsRect = "{{0, 0}, {1155, 787}}";
+			sepNavSelRange = "{752, 0}";
+			sepNavVisRange = "{0, 759}";
 		};
 	};
 	28D7ACF70DDB3853001CB0EB /* Vote_ReportViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {865, 1498}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1155, 1848}}";
 			sepNavSelRange = "{2027, 0}";
-			sepNavVisRange = "{0, 1890}";
+			sepNavVisRange = "{2469, 1639}";
 			sepNavWindowFrame = "{{15, 25}, {996, 1148}}";
 		};
 	};
@@ -7577,6 +7647,13 @@
 			056299890EB676CE00040599 /* PBXTextBookmark */ = 056299890EB676CE00040599 /* PBXTextBookmark */;
 			0562998A0EB678AF00040599 /* PBXTextBookmark */ = 0562998A0EB678AF00040599 /* PBXTextBookmark */;
 			0562998C0EB679F000040599 /* PBXTextBookmark */ = 0562998C0EB679F000040599 /* PBXTextBookmark */;
+			0562998F0EB696E100040599 /* PBXTextBookmark */ = 0562998F0EB696E100040599 /* PBXTextBookmark */;
+			056299900EB696E100040599 /* PBXTextBookmark */ = 056299900EB696E100040599 /* PBXTextBookmark */;
+			056299910EB696E100040599 /* PBXTextBookmark */ = 056299910EB696E100040599 /* PBXTextBookmark */;
+			056299920EB696E100040599 /* PBXTextBookmark */ = 056299920EB696E100040599 /* PBXTextBookmark */;
+			056299930EB696E100040599 /* PBXTextBookmark */ = 056299930EB696E100040599 /* PBXTextBookmark */;
+			056299940EB696E100040599 /* PBXTextBookmark */ = 056299940EB696E100040599 /* PBXTextBookmark */;
+			056299950EB696E100040599 /* PBXTextBookmark */ = 056299950EB696E100040599 /* PBXTextBookmark */;
 			0572E9910EB502C100F73990 = 0572E9910EB502C100F73990 /* PBXBookmark */;
 			0572E9920EB502C100F73990 = 0572E9920EB502C100F73990 /* PlistBookmark */;
 			0572E9990EB502C100F73990 = 0572E9990EB502C100F73990 /* PBXBookmark */;
