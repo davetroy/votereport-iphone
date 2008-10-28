@@ -35,7 +35,7 @@
 	textField.delegate = self;
 	
 	//Get the credit text size right.
-	creditTextView.font = [UIFont fontWithName:@"Arial" size:16];
+	creditTextView.font = [UIFont fontWithName:@"Arial" size:15];
 
 }
 
@@ -64,16 +64,26 @@
 	}
 }
 
+
+// Open KML link for nearby reports
+-(void)openNearbyReports {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:
+					[NSString stringWithFormat: @"maps:q=http://votereport.us/reports.kml?near=%.3f,%.3f", reporter.location.coordinate.latitude, reporter.location.coordinate.longitude]]];
+}
+
 -(void)reportSubmitted {
 	if (!reporter.successful) {
 		locationName.text = @"Report Submission Failed";
+		[button setTitle:@"Try Again" forState:UIControlStateNormal|UIControlStateNormal];	
 		[button setTitle:@"Try Again" forState:UIControlStateNormal|UIControlStateSelected];	
 	}
 	else
 	{
 		locationName.text = @"Report Sent Successfully!";
-		[button setTitle:@"See Other Reports Nearby" forState:UIControlStateNormal|UIControlStateSelected];
+		[button setTitle:@"See Other Reports Nearby" forState:UIControlStateNormal];
+		[button setTitle:@"See Other Reports Nearby" forState:UIControlStateSelected];
 		[button removeTarget:self action:@selector(doPushReportDetailView) forControlEvents:UIControlEventTouchUpInside];
+		[button addTarget:self action:@selector(openNearbyReports) forControlEvents:UIControlEventTouchUpInside];
 	}	
 	button.enabled = YES;
 }

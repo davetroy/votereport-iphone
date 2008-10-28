@@ -11,7 +11,7 @@
 #import "CellAudio.h"
 #import "Constants.h"
 
-#define kLevelMeterWidth	160
+#define kLevelMeterWidth	155
 #define kLevelMeterHeight	25
 #define kLevelOverload		0.9
 #define kLevelHot			0.7

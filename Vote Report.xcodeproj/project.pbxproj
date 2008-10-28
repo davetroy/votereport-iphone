@@ -28,7 +28,8 @@
 		056296BD0EB61F9500040599 /* CellAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 056296BC0EB61F9500040599 /* CellAudio.m */; };
 		0562979E0EB632E300040599 /* soundbar_mono.png in Resources */ = {isa = PBXBuildFile; fileRef = 0562979D0EB632E300040599 /* soundbar_mono.png */; };
 		056298190EB6407800040599 /* soundbar_plate_mono.png in Resources */ = {isa = PBXBuildFile; fileRef = 056298180EB6407800040599 /* soundbar_plate_mono.png */; };
-		0572E8930EB4DA5600F73990 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572E8920EB4DA5600F73990 /* icon.png */; };
+		05629A520EB6AE6500040599 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 05629A510EB6AE6500040599 /* icon.png */; };
+		05629A690EB6AF2700040599 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 05629A680EB6AF2700040599 /* Default.png */; };
 		0572E89D0EB4DBA400F73990 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572E89C0EB4DBA400F73990 /* background.png */; };
 		0572E89F0EB4DBAA00F73990 /* logo_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572E89E0EB4DBAA00F73990 /* logo_splash.png */; };
 		0572E9170EB4EFFE00F73990 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0572E9150EB4EFFE00F73990 /* whiteButton.png */; };
@@ -84,7 +85,8 @@
 		056296BC0EB61F9500040599 /* CellAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellAudio.m; sourceTree = "<group>"; };
 		0562979D0EB632E300040599 /* soundbar_mono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundbar_mono.png; sourceTree = "<group>"; };
 		056298180EB6407800040599 /* soundbar_plate_mono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soundbar_plate_mono.png; sourceTree = "<group>"; };
-		0572E8920EB4DA5600F73990 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		05629A510EB6AE6500040599 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		05629A680EB6AF2700040599 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0572E89C0EB4DBA400F73990 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		0572E89E0EB4DBAA00F73990 /* logo_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_splash.png; sourceTree = "<group>"; };
 		0572E9150EB4EFFE00F73990 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				05629A510EB6AE6500040599 /* icon.png */,
 				056298180EB6407800040599 /* soundbar_plate_mono.png */,
 				0562979D0EB632E300040599 /* soundbar_mono.png */,
 				056295440EB5565C00040599 /* greenslide.png */,
@@ -214,11 +217,11 @@
 				0572E9160EB4EFFE00F73990 /* blueButton.png */,
 				0572E89C0EB4DBA400F73990 /* background.png */,
 				0572E89E0EB4DBAA00F73990 /* logo_splash.png */,
-				0572E8920EB4DA5600F73990 /* icon.png */,
 				058FD7C70EB11971000E2324 /* README */,
 				2899E5210DE3E06400AC0155 /* Vote_ReportViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				05629A680EB6AF2700040599 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -280,7 +283,6 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* Vote_ReportViewController.xib in Resources */,
-				0572E8930EB4DA5600F73990 /* icon.png in Resources */,
 				0572E89D0EB4DBA400F73990 /* background.png in Resources */,
 				0572E89F0EB4DBAA00F73990 /* logo_splash.png in Resources */,
 				0572E9170EB4EFFE00F73990 /* whiteButton.png in Resources */,
@@ -291,6 +293,8 @@
 				056295490EB5565C00040599 /* slider_ball.png in Resources */,
 				0562979E0EB632E300040599 /* soundbar_mono.png in Resources */,
 				056298190EB6407800040599 /* soundbar_plate_mono.png in Resources */,
+				05629A520EB6AE6500040599 /* icon.png in Resources */,
+				05629A690EB6AF2700040599 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

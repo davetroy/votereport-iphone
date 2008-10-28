@@ -740,13 +740,13 @@
 	NSString *soundfile = [messageAudioCell.soundFileURL path];
 	
 	NSString *tags = [[NSMutableString alloc] init];
-	if (machine) [tags stringByAppendingString:@"#machine "];
-	if (registration) [tags stringByAppendingString:@"#registration "];
-	if (challenges) [tags stringByAppendingString:@"#challenges "];
-	if (hava) [tags stringByAppendingString:@"#hava "];
-	if (ballots) [tags stringByAppendingString:@"#ballots"];
+	if (machine) tags = [tags stringByAppendingString:@"#machine "];
+	if (registration) tags = [tags stringByAppendingString:@"#registration "];
+	if (challenges) tags = [tags stringByAppendingString:@"#challenges "];
+	if (hava) tags = [tags stringByAppendingString:@"#hava "];
+	if (ballots) tags = [tags stringByAppendingString:@"#ballots"];
 	
-	NSDictionary *params = [[NSMutableDictionary alloc] init];
+	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 	if (name) [params setValue:name forKey:@"reporter[name]"];
 	if (pollingPlace) [params setValue:pollingPlace forKey:@"polling_place[name]"];
 	if (waitingTime) [params setValue:waitingTime forKey:@"report[wait_time]"];
