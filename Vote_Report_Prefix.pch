@@ -3,7 +3,8 @@
 //
 
 #define TWITTERVISION_LOCATION_LOOKUP_URL	@"http://twittervision.com/locations/lookup"
-#define VOTEREPORT_REPORTS_URL				@"http://votereport.us/reports.iphone"
+#define VOTEREPORT_REPORTS_URL				@"http://iphone.votereport.us/reports.iphone"
+#define VOTEREPORT_REPORTS_KML_URL			@"maps:q=http://votereport.us/reports.kml?near=%.3f,%.3f&iphone=1"
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>

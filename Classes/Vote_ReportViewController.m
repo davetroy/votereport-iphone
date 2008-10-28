@@ -11,17 +11,21 @@
 
 @implementation Vote_ReportViewController
 
-- (void)viewDidLoad {
-	printf("view did load\n");
-	reporter = [[Reporter alloc] init];
+- (id)initWithCoder:(NSCoder*)coder 
+{
+	if (self = [super initWithCoder:coder]) {
+		reporter = [[Reporter alloc] init];
+		[reporter addObserver:self forKeyPath:@"locationName" options:NSKeyValueObservingOptionNew context:NULL];
+	}
+	return self;
+}
 
-	// Set up view
-	[spinner startAnimating];
-	[reporter addObserver:self forKeyPath:@"locationName" options:NSKeyValueObservingOptionNew context:NULL];
+		
+- (void)viewDidLoad {
 	UIImage *buttonBackground = [UIImage imageNamed:@"whiteButton.png"];
 	UIImage *newImage = [buttonBackground stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
 	[button setBackgroundImage:newImage forState:UIControlStateNormal];
-
+	
 	buttonBackground = [UIImage imageNamed:@"blueButton.png"];
 	newImage = [buttonBackground stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
 	[button setBackgroundImage:newImage forState:UIControlStateSelected];
@@ -35,8 +39,7 @@
 	textField.delegate = self;
 	
 	//Get the credit text size right.
-	creditTextView.font = [UIFont fontWithName:@"Arial" size:15];
-
+	creditTextView.font = [UIFont fontWithName:@"Arial" size:15];	
 }
 
 
@@ -68,7 +71,7 @@
 // Open KML link for nearby reports
 -(void)openNearbyReports {
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:
-					[NSString stringWithFormat: @"maps:q=http://votereport.us/reports.kml?near=%.3f,%.3f", reporter.location.coordinate.latitude, reporter.location.coordinate.longitude]]];
+					[NSString stringWithFormat: VOTEREPORT_REPORTS_KML_URL, reporter.location.coordinate.latitude, reporter.location.coordinate.longitude]]];
 }
 
 -(void)reportSubmitted {

@@ -11,8 +11,10 @@
 #import "CellAudio.h"
 #import "Constants.h"
 
+#define kLevelMeterLeft		29
+#define kLevelMeterTop		30
 #define kLevelMeterWidth	155
-#define kLevelMeterHeight	25
+#define kLevelMeterHeight	28
 #define kLevelOverload		0.9
 #define kLevelHot			0.7
 #define kLevelMinimum		0.01
@@ -84,6 +86,9 @@ NSString *kCellAudio_ID = @"CellAudio_ID";
 		
 		CFStringRef fileString = (CFStringRef) [NSString stringWithFormat: @"%@/Recording.caf", self.recordingDirectory];
 		
+		//Delete previous audio report
+		[[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat: @"%@/Recording.caf", self.recordingDirectory] error:NULL];
+
 		// create the file URL that identifies the file that the recording audio queue object records into
 		CFURLRef fileURL =	CFURLCreateWithFileSystemPath (
 														   NULL,
@@ -118,6 +123,7 @@ NSString *kCellAudio_ID = @"CellAudio_ID";
 		[playButton setTitle:@"Play" forState:UIControlStateNormal];
 		playButton.frame = CGRectMake(210, 10, 70, 30);
 		[playButton addTarget:self action:@selector(playOrStop:) forControlEvents:UIControlEventTouchUpInside];
+		[self.playButton setEnabled:NO];
 		[self.contentView addSubview:playButton];
 
 		recordButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -148,11 +154,11 @@ NSString *kCellAudio_ID = @"CellAudio_ID";
 	
 	levelMeter					= [CALayer layer];
 	levelMeter.anchorPoint		= CGPointMake (0.0, 0.5);						// anchor to halfway up the left edge
-	levelMeter.frame			= CGRectMake (31, 25, 0, kLevelMeterHeight);	// set width to 0 to start to completely hide the bar graph segements
+	levelMeter.frame			= CGRectMake (kLevelMeterLeft, kLevelMeterTop, 0, kLevelMeterHeight);	// set width to 0 to start to completely hide the bar graph segements
 	levelMeter.contents			= (UIImage *) soundbarImage.CGImage;
 	
 	peakLevelMeter				= [CALayer layer];
-	peakLevelMeter.frame		= CGRectMake (31, 25, 0, kLevelMeterHeight);
+	peakLevelMeter.frame		= CGRectMake (kLevelMeterLeft, kLevelMeterTop, 0, kLevelMeterHeight);
 	peakLevelMeter.anchorPoint	= CGPointMake (0.0, 0.5);
 	peakLevelMeter.backgroundColor = peakGray.CGColor;
 	
@@ -412,8 +418,8 @@ NSString *kCellAudio_ID = @"CellAudio_ID";
 												);
 		
 		peakLevelMeter.frame =		CGRectMake (
-												31.0 + (peakLevels[0] > 1.0 ? 1.0 : peakLevels[0] )* kLevelMeterWidth,
-												25,
+												kLevelMeterLeft + (peakLevels[0] > 1.0 ? 1.0 : peakLevels[0] )* kLevelMeterWidth,
+												kLevelMeterTop,
 												3,
 												kLevelMeterHeight
 												);
@@ -442,7 +448,7 @@ NSString *kCellAudio_ID = @"CellAudio_ID";
 - (void) resetBargraph {
 	
 	levelMeter.bounds		= CGRectMake (0, 0, 0, kLevelMeterHeight);
-	peakLevelMeter.frame	= CGRectMake (31, 25, 3, kLevelMeterHeight);
+	peakLevelMeter.frame	= CGRectMake (kLevelMeterLeft, kLevelMeterTop, 3, kLevelMeterHeight);
 	peakLevelMeter.bounds	= CGRectMake (0, 0, 0, kLevelMeterHeight);
 }
 
@@ -459,6 +465,8 @@ NSString *kCellAudio_ID = @"CellAudio_ID";
 
 
 - (void)dealloc {
+	[recordButton		release];
+	[playButton			release];
     [super dealloc];
 }
 

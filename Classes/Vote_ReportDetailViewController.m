@@ -754,10 +754,9 @@
 	if (comment) [params setValue:comment forKey:@"report[text]"];
 	if (tags) [params setValue:tags forKey:@"report[tag_string]"];
 	if (messageAudioCell.didRecording && soundfile) [params setValue:soundfile forKey:@"soundfile"];
-	
-	[(Vote_ReportViewController *)self.parentViewController sendReportWith:params];
-		
+			
 	[self dismissModalViewControllerAnimated:YES];
+	[(Vote_ReportViewController *)self.parentViewController sendReportWith:params];
 }
 
 

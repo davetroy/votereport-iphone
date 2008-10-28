@@ -3,7 +3,7 @@
 	CFBundleDisplayName = "${PRODUCT_NAME}";
 	CFBundleExecutable = "${EXECUTABLE_NAME}";
 	CFBundleIconFile = "icon.png";
-	CFBundleIdentifier = "com.popvox.${PRODUCT_NAME:identifier}";
+	CFBundleIdentifier = "com.popvox.VoteReport";
 	"CFBundleInfoDictionaryVersion" = "6.0";
 	CFBundleName = "${PRODUCT_NAME}";
 	CFBundlePackageType = APPL;
